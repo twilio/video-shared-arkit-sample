@@ -1,0 +1,415 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EF3312ED1F9A89EC0030155C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3312EC1F9A89EC0030155C /* AppDelegate.swift */; };
+		EF3312EF1F9A89EC0030155C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3312EE1F9A89EC0030155C /* ViewController.swift */; };
+		EF3312F21F9A89EC0030155C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF3312F01F9A89EC0030155C /* Main.storyboard */; };
+		EF3312F41F9A89EC0030155C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF3312F31F9A89EC0030155C /* Assets.xcassets */; };
+		EF3312F71F9A89EC0030155C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF3312F51F9A89EC0030155C /* LaunchScreen.storyboard */; };
+		EF3312FF1F9A8ABD0030155C /* AliceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3312FE1F9A8ABD0030155C /* AliceViewController.swift */; };
+		EF3313011F9A8AC90030155C /* BobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3313001F9A8AC90030155C /* BobViewController.swift */; };
+		EF3313061F9A8BB60030155C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3313031F9A8BB60030155C /* Settings.swift */; };
+		EF3313071F9A8BB60030155C /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3313041F9A8BB60030155C /* SettingsTableViewController.swift */; };
+		EF3313081F9A8BB60030155C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3313051F9A8BB60030155C /* Utils.swift */; };
+		EF3313091F9A8D6E0030155C /* TwilioVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3313021F9A8B680030155C /* TwilioVideo.framework */; };
+		EF33130A1F9A8D6E0030155C /* TwilioVideo.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EF3313021F9A8B680030155C /* TwilioVideo.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		EF33130E1F9A8D8E0030155C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF33130D1F9A8D8E0030155C /* AudioToolbox.framework */; };
+		EF3313101F9A8D940030155C /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF33130F1F9A8D930030155C /* VideoToolbox.framework */; };
+		EF3313121F9A8D9A0030155C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3313111F9A8D9A0030155C /* CoreTelephony.framework */; };
+		EF3313141F9A8DC30030155C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3313131F9A8DC30030155C /* AVFoundation.framework */; };
+		EF3313161F9A8DCA0030155C /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3313151F9A8DCA0030155C /* GLKit.framework */; };
+		EF3313181F9A8DD10030155C /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3313171F9A8DD10030155C /* CoreMedia.framework */; };
+		EF33131A1F9A8DD60030155C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3313191F9A8DD60030155C /* SystemConfiguration.framework */; };
+		EF33131C1F9A8DDD0030155C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EF33131B1F9A8DDD0030155C /* libc++.tbd */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		EF33130B1F9A8D6E0030155C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				EF33130A1F9A8D6E0030155C /* TwilioVideo.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		EF3312E91F9A89EC0030155C /* DesignConsult.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesignConsult.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF3312EC1F9A89EC0030155C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EF3312EE1F9A89EC0030155C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EF3312F11F9A89EC0030155C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EF3312F31F9A89EC0030155C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EF3312F61F9A89EC0030155C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EF3312F81F9A89EC0030155C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EF3312FE1F9A8ABD0030155C /* AliceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliceViewController.swift; sourceTree = "<group>"; };
+		EF3313001F9A8AC90030155C /* BobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BobViewController.swift; sourceTree = "<group>"; };
+		EF3313021F9A8B680030155C /* TwilioVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwilioVideo.framework; sourceTree = "<group>"; };
+		EF3313031F9A8BB60030155C /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		EF3313041F9A8BB60030155C /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		EF3313051F9A8BB60030155C /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		EF33130D1F9A8D8E0030155C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		EF33130F1F9A8D930030155C /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
+		EF3313111F9A8D9A0030155C /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		EF3313131F9A8DC30030155C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		EF3313151F9A8DCA0030155C /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		EF3313171F9A8DD10030155C /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		EF3313191F9A8DD60030155C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		EF33131B1F9A8DDD0030155C /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EF3312E61F9A89EC0030155C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF33131C1F9A8DDD0030155C /* libc++.tbd in Frameworks */,
+				EF33131A1F9A8DD60030155C /* SystemConfiguration.framework in Frameworks */,
+				EF3313181F9A8DD10030155C /* CoreMedia.framework in Frameworks */,
+				EF3313161F9A8DCA0030155C /* GLKit.framework in Frameworks */,
+				EF3313141F9A8DC30030155C /* AVFoundation.framework in Frameworks */,
+				EF3313121F9A8D9A0030155C /* CoreTelephony.framework in Frameworks */,
+				EF3313101F9A8D940030155C /* VideoToolbox.framework in Frameworks */,
+				EF33130E1F9A8D8E0030155C /* AudioToolbox.framework in Frameworks */,
+				EF3313091F9A8D6E0030155C /* TwilioVideo.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EF3312E01F9A89EC0030155C = {
+			isa = PBXGroup;
+			children = (
+				EF3313021F9A8B680030155C /* TwilioVideo.framework */,
+				EF3312EB1F9A89EC0030155C /* DesignConsult */,
+				EF3312EA1F9A89EC0030155C /* Products */,
+				EF33130C1F9A8D8E0030155C /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		EF3312EA1F9A89EC0030155C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EF3312E91F9A89EC0030155C /* DesignConsult.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EF3312EB1F9A89EC0030155C /* DesignConsult */ = {
+			isa = PBXGroup;
+			children = (
+				EF3312EC1F9A89EC0030155C /* AppDelegate.swift */,
+				EF3312EE1F9A89EC0030155C /* ViewController.swift */,
+				EF3312FE1F9A8ABD0030155C /* AliceViewController.swift */,
+				EF3313001F9A8AC90030155C /* BobViewController.swift */,
+				EF3313031F9A8BB60030155C /* Settings.swift */,
+				EF3313041F9A8BB60030155C /* SettingsTableViewController.swift */,
+				EF3313051F9A8BB60030155C /* Utils.swift */,
+				EF3312F01F9A89EC0030155C /* Main.storyboard */,
+				EF3312F31F9A89EC0030155C /* Assets.xcassets */,
+				EF3312F51F9A89EC0030155C /* LaunchScreen.storyboard */,
+				EF3312F81F9A89EC0030155C /* Info.plist */,
+			);
+			path = DesignConsult;
+			sourceTree = "<group>";
+		};
+		EF33130C1F9A8D8E0030155C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EF33131B1F9A8DDD0030155C /* libc++.tbd */,
+				EF3313191F9A8DD60030155C /* SystemConfiguration.framework */,
+				EF3313171F9A8DD10030155C /* CoreMedia.framework */,
+				EF3313151F9A8DCA0030155C /* GLKit.framework */,
+				EF3313131F9A8DC30030155C /* AVFoundation.framework */,
+				EF3313111F9A8D9A0030155C /* CoreTelephony.framework */,
+				EF33130F1F9A8D930030155C /* VideoToolbox.framework */,
+				EF33130D1F9A8D8E0030155C /* AudioToolbox.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EF3312E81F9A89EC0030155C /* DesignConsult */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EF3312FB1F9A89EC0030155C /* Build configuration list for PBXNativeTarget "DesignConsult" */;
+			buildPhases = (
+				EF3312E51F9A89EC0030155C /* Sources */,
+				EF3312E61F9A89EC0030155C /* Frameworks */,
+				EF3312E71F9A89EC0030155C /* Resources */,
+				EF33130B1F9A8D6E0030155C /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DesignConsult;
+			productName = DesignConsult;
+			productReference = EF3312E91F9A89EC0030155C /* DesignConsult.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EF3312E11F9A89EC0030155C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0900;
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = Twilio;
+				TargetAttributes = {
+					EF3312E81F9A89EC0030155C = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = EF3312E41F9A89EC0030155C /* Build configuration list for PBXProject "DesignConsult" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EF3312E01F9A89EC0030155C;
+			productRefGroup = EF3312EA1F9A89EC0030155C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EF3312E81F9A89EC0030155C /* DesignConsult */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EF3312E71F9A89EC0030155C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF3312F71F9A89EC0030155C /* LaunchScreen.storyboard in Resources */,
+				EF3312F41F9A89EC0030155C /* Assets.xcassets in Resources */,
+				EF3312F21F9A89EC0030155C /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EF3312E51F9A89EC0030155C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF3313011F9A8AC90030155C /* BobViewController.swift in Sources */,
+				EF3312EF1F9A89EC0030155C /* ViewController.swift in Sources */,
+				EF3313071F9A8BB60030155C /* SettingsTableViewController.swift in Sources */,
+				EF3313081F9A8BB60030155C /* Utils.swift in Sources */,
+				EF3312ED1F9A89EC0030155C /* AppDelegate.swift in Sources */,
+				EF3312FF1F9A8ABD0030155C /* AliceViewController.swift in Sources */,
+				EF3313061F9A8BB60030155C /* Settings.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		EF3312F01F9A89EC0030155C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EF3312F11F9A89EC0030155C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		EF3312F51F9A89EC0030155C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EF3312F61F9A89EC0030155C /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EF3312F91F9A89EC0030155C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		EF3312FA1F9A89EC0030155C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EF3312FC1F9A89EC0030155C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LWDD7HRMTB;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = DesignConsult/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.twilio.DesignConsult;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EF3312FD1F9A89EC0030155C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LWDD7HRMTB;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = DesignConsult/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.twilio.DesignConsult;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EF3312E41F9A89EC0030155C /* Build configuration list for PBXProject "DesignConsult" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF3312F91F9A89EC0030155C /* Debug */,
+				EF3312FA1F9A89EC0030155C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EF3312FB1F9A89EC0030155C /* Build configuration list for PBXNativeTarget "DesignConsult" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF3312FC1F9A89EC0030155C /* Debug */,
+				EF3312FD1F9A89EC0030155C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EF3312E11F9A89EC0030155C /* Project object */;
+}
