@@ -14,7 +14,7 @@ import TwilioVideo
 class AliceViewController: UIViewController, ARSCNViewDelegate {
     
     @IBOutlet var sceneView: ARSCNView!
-    var accessToken = "TWILIO_ACCESS_TOKEN"
+    var accessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImN0eSI6InR3aWxpby1mcGE7dj0xIn0.eyJqdGkiOiJTSzJiZTRjNGFiOGVmNjNkOWZmZDM1MjFiZTA5Nzg1OWJhLTE1MDg3ODA2NjUiLCJpc3MiOiJTSzJiZTRjNGFiOGVmNjNkOWZmZDM1MjFiZTA5Nzg1OWJhIiwic3ViIjoiQUM5OWJhN2I2MWZiZGI2YzAzOTY5ODUwNWRlYTVmMDQ0YyIsImV4cCI6MTUwODc4NDI2NSwiZ3JhbnRzIjp7ImlkZW50aXR5IjoiQWxpY2UiLCJ2aWRlbyI6eyJyb29tIjoiRGVzaWduQ29uc3VsdCJ9fX0.qF4v1TbaTHD7tpLGz-KDbODEmU1MI3hfS1ODwEcgHjs"
     var room: TVIRoom?
     weak var consumer: TVIVideoCaptureConsumer?
     var frame: TVIVideoFrame?
@@ -62,7 +62,7 @@ class AliceViewController: UIViewController, ARSCNViewDelegate {
     func placeObjectAtLocation(location: String) {
         // trim because it comes wrapped in parens right now
         let trimmed = location.dropLast().dropFirst()
-        var locationPoint: CGPoint = CGPointFromString("{\(trimmed)}")
+        let locationPoint: CGPoint = CGPointFromString("{\(trimmed)}")
         let hitResult = self.sceneView.hitTest(locationPoint, types: [.existingPlaneUsingExtent, .estimatedHorizontalPlane])
         if hitResult.count > 0 {
             guard let hitTestResult = hitResult.first else  {

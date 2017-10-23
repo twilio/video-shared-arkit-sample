@@ -16,7 +16,7 @@ class BobViewController: UIViewController {
     
     // Configure access token manually for testing, if desired! Create one manually in the console
     // at https://www.twilio.com/user/account/video/dev-tools/testing-tools
-    var accessToken = "TWILIO_ACCESS_TOKEN"
+    var accessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImN0eSI6InR3aWxpby1mcGE7dj0xIn0.eyJqdGkiOiJTSzJiZTRjNGFiOGVmNjNkOWZmZDM1MjFiZTA5Nzg1OWJhLTE1MDg3ODA2NzgiLCJpc3MiOiJTSzJiZTRjNGFiOGVmNjNkOWZmZDM1MjFiZTA5Nzg1OWJhIiwic3ViIjoiQUM5OWJhN2I2MWZiZGI2YzAzOTY5ODUwNWRlYTVmMDQ0YyIsImV4cCI6MTUwODc4NDI3OCwiZ3JhbnRzIjp7ImlkZW50aXR5IjoiQm9iIiwidmlkZW8iOnsicm9vbSI6IkRlc2lnbkNvbnN1bHQifX19.iFfRX_9MQdjp3lPaaWCApA8LFGv5NKRboFI3OqTd5bA"
     
     // Configure remote URL to fetch token from
     var tokenUrl = "http://localhost:8000/token.php"
@@ -33,16 +33,14 @@ class BobViewController: UIViewController {
     // MARK: UI Element Outlets and handles
     @IBOutlet weak var disconnectButton: UIButton!
     @IBOutlet weak var messageLabel: UILabel!
-    @IBOutlet weak var micButton: UIButton!
     
     // MARK: UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Design Consultation"
         
-        // Disconnect and mic button will be displayed when the Client is connected to a Room.
+        // Disconnect button will be displayed when the Client is connected to a Room.
         self.disconnectButton.isHidden = true
-        self.micButton.isHidden = true
     
         // Add a gesture recognizer for the tap actions so Bob can place items
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
@@ -117,7 +115,7 @@ class BobViewController: UIViewController {
                 accessToken = try TokenUtils.fetchToken(url: tokenUrl)
             } catch {
                 let message = "Failed to fetch access token"
-                logMessage(messageText: message)
+                print(message)
                 return
             }
         }
@@ -154,28 +152,16 @@ class BobViewController: UIViewController {
         
         // Connect to the Room using the options we provided.
         room = TwilioVideo.connect(with: connectOptions, delegate: self)
-        logMessage(messageText: "Attempting to connect to room")
+        print("Attempting to connect to room")
         
         self.showRoomUI(inRoom: true)
     }
     
     @IBAction func disconnect(sender: AnyObject) {
         self.room!.disconnect()
-        logMessage(messageText: "Attempting to disconnect from room \(room!.name)")
+        print("Attempting to disconnect from room \(room!.name)")
     }
     
-    @IBAction func toggleMic(sender: AnyObject) {
-        if (self.localAudioTrack != nil) {
-            self.localAudioTrack?.isEnabled = !(self.localAudioTrack?.isEnabled)!
-            
-            // Update the button title
-            if (self.localAudioTrack?.isEnabled == true) {
-                self.micButton.setTitle("Mute", for: .normal)
-            } else {
-                self.micButton.setTitle("Unmute", for: .normal)
-            }
-        }
-    }
     
     func prepareLocalMedia() {
         
@@ -186,7 +172,7 @@ class BobViewController: UIViewController {
             localAudioTrack = TVILocalAudioTrack.init()
             
             if (localAudioTrack == nil) {
-                logMessage(messageText: "Failed to create audio track")
+                print("Failed to create audio track")
             }
         }
         
@@ -195,14 +181,13 @@ class BobViewController: UIViewController {
             localDataTrack = TVILocalDataTrack.init()
             
             if (localDataTrack == nil) {
-                logMessage(messageText: "Failed to create data track")
+                print("Failed to create data track")
             }
         }
     }
     
     // Update our UI based upon if we are in a Room or not
     func showRoomUI(inRoom: Bool) {
-        self.micButton.isHidden = !inRoom
         self.disconnectButton.isHidden = !inRoom
         self.navigationController?.setNavigationBarHidden(inRoom, animated: true)
         UIApplication.shared.isIdleTimerDisabled = inRoom
@@ -219,10 +204,6 @@ class BobViewController: UIViewController {
         }
         self.remoteParticipant = nil
     }
-    
-    func logMessage(messageText: String) {
-        messageLabel.text = messageText
-    }
 }
 
 // MARK: TVIRoomDelegate
@@ -231,7 +212,7 @@ extension BobViewController : TVIRoomDelegate {
         
         // At the moment, this example only supports rendering one Participant at a time.
         
-        logMessage(messageText: "Connected to room \(room.name) as \(String(describing: room.localParticipant?.identity))")
+        print("Connected to room \(room.name) as \(String(describing: room.localParticipant?.identity))")
         
         if (room.remoteParticipants.count > 0) {
             self.remoteParticipant = room.remoteParticipants[0]
@@ -240,7 +221,7 @@ extension BobViewController : TVIRoomDelegate {
     }
     
     func room(_ room: TVIRoom, didDisconnectWithError error: Error?) {
-        logMessage(messageText: "Disconncted from room \(room.name), error = \(String(describing: error))")
+        print("Disconncted from room \(room.name), error = \(String(describing: error))")
         
         self.cleanupRemoteParticipant()
         self.room = nil
@@ -249,7 +230,7 @@ extension BobViewController : TVIRoomDelegate {
     }
     
     func room(_ room: TVIRoom, didFailToConnectWithError error: Error) {
-        logMessage(messageText: "Failed to connect to room with error")
+        print("Failed to connect to room with error")
         self.room = nil
         
         self.showRoomUI(inRoom: false)
@@ -260,14 +241,14 @@ extension BobViewController : TVIRoomDelegate {
             self.remoteParticipant = participant
             self.remoteParticipant?.delegate = self
         }
-        logMessage(messageText: "Participant \(participant.identity) connected with \(participant.remoteAudioTracks.count) audio and \(participant.remoteVideoTracks.count) video tracks")
+        print("Participant \(participant.identity) connected with \(participant.remoteAudioTracks.count) audio and \(participant.remoteVideoTracks.count) video tracks")
     }
     
     func room(_ room: TVIRoom, participantDidDisconnect participant: TVIRemoteParticipant) {
         if (self.remoteParticipant == participant) {
             cleanupRemoteParticipant()
         }
-        logMessage(messageText: "Room \(room.name), Participant \(participant.identity) disconnected")
+        print("Room \(room.name), Participant \(participant.identity) disconnected")
     }
 }
 
@@ -279,7 +260,7 @@ extension BobViewController : TVIRemoteParticipantDelegate {
         
         // Remote Participant has offered to share the video Track.
         
-        logMessage(messageText: "Participant \(participant.identity) published video track")
+        print("Participant \(participant.identity) published video track")
     }
     
     func remoteParticipant(_ participant: TVIRemoteParticipant,
@@ -287,7 +268,7 @@ extension BobViewController : TVIRemoteParticipantDelegate {
         
         // Remote Participant has stopped sharing the video Track.
         
-        logMessage(messageText: "Participant \(participant.identity) unpublished video track")
+        print("Participant \(participant.identity) unpublished video track")
     }
     
     func remoteParticipant(_ participant: TVIRemoteParticipant,
@@ -295,7 +276,7 @@ extension BobViewController : TVIRemoteParticipantDelegate {
         
         // Remote Participant has offered to share the audio Track.
         
-        logMessage(messageText: "Participant \(participant.identity) published audio track")
+        print("Participant \(participant.identity) published audio track")
     }
     
     func remoteParticipant(_ participant: TVIRemoteParticipant,
@@ -303,7 +284,7 @@ extension BobViewController : TVIRemoteParticipantDelegate {
         
         // Remote Participant has stopped sharing the audio Track.
         
-        logMessage(messageText: "Participant \(participant.identity) unpublished audio track")
+        print("Participant \(participant.identity) unpublished audio track")
     }
     
     func subscribed(to videoTrack: TVIRemoteVideoTrack,
@@ -313,7 +294,7 @@ extension BobViewController : TVIRemoteParticipantDelegate {
         // We are subscribed to the remote Participant's audio Track. We will start receiving the
         // remote Participant's video frames now.
         
-        logMessage(messageText: "Subscribed to video track for Participant \(participant.identity)")
+        print("Subscribed to video track for Participant \(participant.identity)")
         
         if (self.remoteParticipant == participant) {
             setupRemoteVideoView()
@@ -328,7 +309,7 @@ extension BobViewController : TVIRemoteParticipantDelegate {
         // We are unsubscribed from the remote Participant's video Track. We will no longer receive the
         // remote Participant's video.
         
-        logMessage(messageText: "Unsubscribed from video track for Participant \(participant.identity)")
+        print("Unsubscribed from video track for Participant \(participant.identity)")
         
         if (self.remoteParticipant == participant) {
             videoTrack.removeRenderer(self.remoteView!)
@@ -344,7 +325,7 @@ extension BobViewController : TVIRemoteParticipantDelegate {
         // We are subscribed to the remote Participant's audio Track. We will start receiving the
         // remote Participant's audio now.
         
-        logMessage(messageText: "Subscribed to audio track for Participant \(participant.identity)")
+        print("Subscribed to audio track for Participant \(participant.identity)")
     }
     
     func unsubscribed(from audioTrack: TVIRemoteAudioTrack,
@@ -354,35 +335,35 @@ extension BobViewController : TVIRemoteParticipantDelegate {
         // We are unsubscribed from the remote Participant's audio Track. We will no longer receive the
         // remote Participant's audio.
         
-        logMessage(messageText: "Unsubscribed from audio track for Participant \(participant.identity)")
+        print("Unsubscribed from audio track for Participant \(participant.identity)")
     }
     
     func remoteParticipant(_ participant: TVIRemoteParticipant,
                            enabledVideoTrack publication: TVIRemoteVideoTrackPublication) {
-        logMessage(messageText: "Participant \(participant.identity) enabled video track")
+        print("Participant \(participant.identity) enabled video track")
     }
     
     func remoteParticipant(_ participant: TVIRemoteParticipant,
                            disabledVideoTrack publication: TVIRemoteVideoTrackPublication) {
-        logMessage(messageText: "Participant \(participant.identity) disabled video track")
+        print("Participant \(participant.identity) disabled video track")
     }
     
     func remoteParticipant(_ participant: TVIRemoteParticipant,
                            enabledAudioTrack publication: TVIRemoteAudioTrackPublication) {
-        logMessage(messageText: "Participant \(participant.identity) enabled audio track")
+        print("Participant \(participant.identity) enabled audio track")
     }
     
     func remoteParticipant(_ participant: TVIRemoteParticipant,
                            disabledAudioTrack publication: TVIRemoteAudioTrackPublication) {
-        logMessage(messageText: "Participant \(participant.identity) disabled audio track")
+        print("Participant \(participant.identity) disabled audio track")
     }
     
     func remoteParticipant(_ participant: TVIRemoteParticipant, publishedDataTrack publication: TVIRemoteDataTrackPublication) {
-        logMessage(messageText: "published data track")
+        print("published data track")
     }
     
     func remoteParticipant(_ participant: TVIRemoteParticipant, unpublishedDataTrack publication: TVIRemoteDataTrackPublication) {
-        logMessage(messageText: "unpublished data track")
+        print("unpublished data track")
     }
 }
 
