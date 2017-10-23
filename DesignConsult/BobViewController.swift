@@ -16,7 +16,7 @@ class BobViewController: UIViewController {
     
     // Configure access token manually for testing, if desired! Create one manually in the console
     // at https://www.twilio.com/user/account/video/dev-tools/testing-tools
-    var accessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImN0eSI6InR3aWxpby1mcGE7dj0xIn0.eyJqdGkiOiJTSzJiZTRjNGFiOGVmNjNkOWZmZDM1MjFiZTA5Nzg1OWJhLTE1MDg3ODA2NzgiLCJpc3MiOiJTSzJiZTRjNGFiOGVmNjNkOWZmZDM1MjFiZTA5Nzg1OWJhIiwic3ViIjoiQUM5OWJhN2I2MWZiZGI2YzAzOTY5ODUwNWRlYTVmMDQ0YyIsImV4cCI6MTUwODc4NDI3OCwiZ3JhbnRzIjp7ImlkZW50aXR5IjoiQm9iIiwidmlkZW8iOnsicm9vbSI6IkRlc2lnbkNvbnN1bHQifX19.iFfRX_9MQdjp3lPaaWCApA8LFGv5NKRboFI3OqTd5bA"
+    var accessToken = "TWILIO_ACCESS_TOKEN"
     
     // Configure remote URL to fetch token from
     var tokenUrl = "http://localhost:8000/token.php"
