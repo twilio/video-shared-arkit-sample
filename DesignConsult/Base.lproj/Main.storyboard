@@ -75,15 +75,66 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ms-Su-N51">
-                                <rect key="frame" x="19" y="603" width="78" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ms-Su-N51">
+                                <rect key="frame" x="281" y="617" width="78" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="g7d-HG-LoN"/>
                                 </constraints>
-                                <state key="normal" title="Disconnect"/>
+                                <state key="normal" title="Disconnect">
+                                    <color key="titleColor" red="0.0" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fmj-yD-pMt">
+                                <rect key="frame" x="16" y="607" width="150" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZZB-sl-N24">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="Ff8-Xc-2V4"/>
+                                            <constraint firstAttribute="height" constant="50" id="pYe-gu-wNS"/>
+                                        </constraints>
+                                        <state key="normal" title="Chair">
+                                            <color key="titleColor" red="0.0" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="setChair:" destination="74T-kp-JbP" eventType="touchUpInside" id="CHl-ha-yUN"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W6l-bI-oM5">
+                                        <rect key="frame" x="50" y="0.0" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="8au-gl-9aG"/>
+                                            <constraint firstAttribute="height" constant="50" id="tSX-s0-FaG"/>
+                                        </constraints>
+                                        <state key="normal" title="Lamp">
+                                            <color key="titleColor" red="0.0" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="setLamp:" destination="74T-kp-JbP" eventType="touchUpInside" id="nfU-kH-J3q"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E1S-Ox-HHL">
+                                        <rect key="frame" x="100" y="0.0" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="kCv-Zt-gYo"/>
+                                            <constraint firstAttribute="width" constant="50" id="lsi-gb-DdE"/>
+                                        </constraints>
+                                        <state key="normal" title="Vase">
+                                            <color key="titleColor" red="0.0" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="setVase:" destination="74T-kp-JbP" eventType="touchUpInside" id="9dS-od-oOf"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="9Ms-Su-N51" firstAttribute="leading" secondItem="BNf-DV-ZWI" secondAttribute="leading" constant="281" id="LNs-Iy-Klr"/>
+                            <constraint firstItem="9Ms-Su-N51" firstAttribute="top" secondItem="BNf-DV-ZWI" secondAttribute="top" constant="597" id="uuL-7z-Clq"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="BNf-DV-ZWI"/>
                     </view>
                     <connections>

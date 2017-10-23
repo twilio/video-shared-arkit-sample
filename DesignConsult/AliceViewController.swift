@@ -56,38 +56,76 @@ class AliceViewController: UIViewController, ARSCNViewDelegate {
         })
         // Connect to the room
         self.room = TwilioVideo.connect(with: connectOptions, delegate: self)
-        
+//                registerGestureRecognizer()
     }
     
-    func placeObjectAtLocation(location: String) {
-        // trim because it comes wrapped in parens right now
-        let trimmed = location.dropLast().dropFirst()
-        let locationPoint: CGPoint = CGPointFromString("{\(trimmed)}")
+    func placeObjectAtLocation(objectAndLocation: String) {
+        // takes pair of object name and location coordinates from Bob's data track
+        let objectName = objectAndLocation.components(separatedBy: " ").first
+        let range = objectAndLocation.range(of: objectName!)
+        
+        // trim coordinates into something that can be converted to a CGPoint
+        let coordinates = objectAndLocation.substring(from: (range?.upperBound)!)
+        let location = coordinates.dropLast().dropFirst().dropFirst()
+        let locationPoint: CGPoint = CGPointFromString("{\(location)}")
         let hitResult = self.sceneView.hitTest(locationPoint, types: [.existingPlaneUsingExtent, .estimatedHorizontalPlane])
         if hitResult.count > 0 {
             guard let hitTestResult = hitResult.first else  {
                 return
             }
-            //          sphere while testing, replace with furniture objects corresponding to those in designer side app
-            let ball = SCNSphere(radius: 0.1)
-            ball.firstMaterial?.diffuse.contents = UIColor.cyan
-            ball.firstMaterial?.specular.contents = UIColor.blue
-            let ballNode = SCNNode(geometry: ball)
-            let worldPosition = hitTestResult.worldTransform
-            ballNode.position = SCNVector3(worldPosition.columns.3.x, worldPosition.columns.3.y, worldPosition.columns.3.z)
+            //            sphere while testing, replace with furniture objects corresponding to those in designer side app
+            //            let ball = SCNSphere(radius: 0.1)
+            //            ball.firstMaterial?.diffuse.contents = UIColor.cyan
+            //            ball.firstMaterial?.specular.contents = UIColor.blue
+            //            let ballNode = SCNNode(geometry: ball)
+            //            let worldPosition = hitTestResult.worldTransform
+            //            ballNode.position = SCNVector3(worldPosition.columns.3.x, worldPosition.columns.3.y, worldPosition.columns.3.z)
+            //
+            //            sceneView.scene.rootNode.addChildNode(ballNode)
             
-            sceneView.scene.rootNode.addChildNode(ballNode)
+            // place chair. refactor this later.
+            if objectName == "chair" {
+                print("placing chair")
+                let scene = SCNScene(named: "Models.scnassets/chair/chair.scn")
+                let node = scene?.rootNode.childNode(withName: "chair", recursively: false)
+                let worldPosition = hitTestResult.worldTransform
+                node?.position = SCNVector3(worldPosition.columns.3.x, worldPosition.columns.3.y, worldPosition.columns.3.z)
+                sceneView.scene.rootNode.addChildNode(node!)
+            }
+            
+            // place lamp. refactor this later.
+            if objectName == "lamp" {
+                print("placing lamp")
+                let scene = SCNScene(named: "Models.scnassets/lamp/lamp.scn")
+                let node = scene?.rootNode.childNode(withName: "lamp", recursively: false)
+                let worldPosition = hitTestResult.worldTransform
+                node?.position = SCNVector3(worldPosition.columns.3.x, worldPosition.columns.3.y, worldPosition.columns.3.z)
+                sceneView.scene.rootNode.addChildNode(node!)
+            }
+            
+            // place lamp. refactor this later.
+            if objectName == "vase" {
+                print("placing vase")
+                let scene = SCNScene(named: "Models.scnassets/vase/vase.scn")
+                let node = scene?.rootNode.childNode(withName: "vase", recursively: false)
+                let worldPosition = hitTestResult.worldTransform
+                node?.position = SCNVector3(worldPosition.columns.3.x, worldPosition.columns.3.y, worldPosition.columns.3.z)
+                sceneView.scene.rootNode.addChildNode(node!)
+            }
+            
         }
+        
     }
     
-    //    OLD -- for tap events, replacing with data track messages
-    //    func registerGestureRecognizer() {
-    //        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-    //        sceneView.addGestureRecognizer(tap)
-    //    }
-    //    @objc func handleTap(gestureRecognizer: UIGestureRecognizer){
-    //
-    //    }
+//            OLD -- for tap events, replacing with data track messages
+//            func registerGestureRecognizer() {
+//                let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+//                sceneView.addGestureRecognizer(tap)
+//            }
+//            @objc func handleTap(gestureRecognizer: UIGestureRecognizer){
+//                let touchlocation = gestureRecognizer.location(in: sceneView)
+//                placeObjectAtLocation(objectAndLocation: "vase \(touchlocation)")
+//            }
     
     func startCapture(format: TVIVideoFormat, consumer: TVIVideoCaptureConsumer) {
         self.consumer = consumer
@@ -222,7 +260,7 @@ extension AliceViewController : TVIRemoteParticipantDelegate {
 extension AliceViewController : TVIRemoteDataTrackDelegate {
     func remoteDataTrack(_ remoteDataTrack: TVIRemoteDataTrack, didReceive message: String) {
         // Do whatever you want with your received message string
-        placeObjectAtLocation(location: message)
+        placeObjectAtLocation(objectAndLocation: message)
     }
     
     func remoteDataTrack(_ remoteDataTrack: TVIRemoteDataTrack, didReceive message: Data) {

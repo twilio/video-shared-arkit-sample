@@ -29,10 +29,10 @@ class BobViewController: UIViewController {
     var localDataTrack: TVILocalDataTrack?
     var remoteParticipant: TVIRemoteParticipant?
     var remoteView: TVIVideoView?
+    var currentObject = "chair"
     
     // MARK: UI Element Outlets and handles
     @IBOutlet weak var disconnectButton: UIButton!
-    @IBOutlet weak var messageLabel: UILabel!
     
     // MARK: UIViewController
     override func viewDidLoad() {
@@ -41,7 +41,7 @@ class BobViewController: UIViewController {
         
         // Disconnect button will be displayed when the Client is connected to a Room.
         self.disconnectButton.isHidden = true
-    
+        
         // Add a gesture recognizer for the tap actions so Bob can place items
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         self.view.addGestureRecognizer(tap)
@@ -55,12 +55,23 @@ class BobViewController: UIViewController {
         let location = gestureRecognizer.location(in: self.view)
         
         if (self.localDataTrack != nil) {
-            let message = "\(location)"
+            let message = "\(currentObject) \(location)"
             localDataTrack?.send(message)
+            print(message)
         }
-        
-        
     }
+    
+    @IBAction func setChair(_ sender: Any) {
+        currentObject = "chair"
+    }
+    @IBAction func setLamp(_ sender: Any) {
+        currentObject = "lamp"
+    }
+    @IBAction func setVase(_ sender: Any) {
+        currentObject = "vase"
+    }
+    
+    
     
     func setupRemoteVideoView() {
         // Creating `TVIVideoView` programmatically
@@ -107,7 +118,7 @@ class BobViewController: UIViewController {
     }
     
     // MARK: IBActions
-   func connect() {
+    func connect() {
         // Configure access token either from server or manually.
         // If the default wasn't changed, try fetching from server.
         if (accessToken == "TWILIO_ACCESS_TOKEN") {
