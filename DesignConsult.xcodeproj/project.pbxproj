@@ -27,6 +27,7 @@
 		EF3313181F9A8DD10030155C /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3313171F9A8DD10030155C /* CoreMedia.framework */; };
 		EF33131A1F9A8DD60030155C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3313191F9A8DD60030155C /* SystemConfiguration.framework */; };
 		EF33131C1F9A8DDD0030155C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EF33131B1F9A8DDD0030155C /* libc++.tbd */; };
+		EF37D94C1F9E83E5005E4EA3 /* Models.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = EF37D94B1F9E83E5005E4EA3 /* Models.scnassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -65,6 +66,7 @@
 		EF3313171F9A8DD10030155C /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		EF3313191F9A8DD60030155C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		EF33131B1F9A8DDD0030155C /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		EF37D94B1F9E83E5005E4EA3 /* Models.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Models.scnassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 		EF3312EB1F9A89EC0030155C /* DesignConsult */ = {
 			isa = PBXGroup;
 			children = (
+				EF37D94B1F9E83E5005E4EA3 /* Models.scnassets */,
 				EF3312EC1F9A89EC0030155C /* AppDelegate.swift */,
 				EF3312EE1F9A89EC0030155C /* ViewController.swift */,
 				EF3312FE1F9A8ABD0030155C /* AliceViewController.swift */,
@@ -199,6 +202,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF3312F71F9A89EC0030155C /* LaunchScreen.storyboard in Resources */,
+				EF37D94C1F9E83E5005E4EA3 /* Models.scnassets in Resources */,
 				EF3312F41F9A89EC0030155C /* Assets.xcassets in Resources */,
 				EF3312F21F9A89EC0030155C /* Main.storyboard in Resources */,
 			);
