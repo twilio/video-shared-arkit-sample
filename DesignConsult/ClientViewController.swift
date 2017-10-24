@@ -19,12 +19,11 @@ class ClientViewController: UIViewController, ARSCNViewDelegate {
     weak var consumer: TVIVideoCaptureConsumer?
     var frame: TVIVideoFrame?
     var displayLink: CADisplayLink?
-    var screencast: Bool?
     
-    var supportedFormats = [TVIVideoFormat]()
     var videoTrack: TVILocalVideoTrack?
     var audioTrack: TVILocalAudioTrack?
     var dataTrack: TVIRemoteDataTrack?
+    var switchView = UISwitch()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,27 +34,39 @@ class ClientViewController: UIViewController, ARSCNViewDelegate {
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = false
         sceneView.preferredFramesPerSecond = 30
-        sceneView.contentScaleFactor = 1
+        sceneView.contentScaleFactor = 1.0
         
         // Create a new scene and set it to the view
         let scene = SCNScene()
         self.sceneView.scene = scene
-        self.supportedFormats = [TVIVideoFormat()]
         
-        sceneView.debugOptions =
-            [ARSCNDebugOptions.showFeaturePoints] //show feature points to improve likelihood of HitResult
-        
-        let capturer: TVIVideoCapturer = TVIScreenCapturer.init(view: self.sceneView!)
-        self.videoTrack = TVILocalVideoTrack.init(capturer: capturer)
+        self.videoTrack = TVILocalVideoTrack.init(capturer: self)
         self.audioTrack = TVILocalAudioTrack.init()
         let localDataTrack = TVILocalDataTrack()
         let connectOptions = TVIConnectOptions(token: accessToken, block: {(_ builder: TVIConnectOptionsBuilder) -> Void in
             builder.videoTracks = [self.videoTrack!]
             builder.roomName = "DesignConsult"
             builder.dataTracks = [localDataTrack!]
+            builder.preferredVideoCodecs = [TVIVideoCodec.H264.rawValue]
         })
         // Connect to the room
         self.room = TwilioVideo.connect(with: connectOptions, delegate: self)
+        
+        switchView.addTarget(self, action: #selector(ClientViewController.showFeaturePointsValueChanged(sender:)), for: UIControlEvents.valueChanged)
+
+        self.sceneView.addSubview(switchView)
+    }
+    
+    override func viewWillLayoutSubviews() {
+        switchView.frame = CGRect(x: self.view.frame.width - 60, y:20, width: 40, height:20)
+    }
+    
+    @objc func showFeaturePointsValueChanged(sender: UISwitch!) {
+        if sender.isOn {
+            sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
+        } else {
+            sceneView.debugOptions = []
+        }
     }
     
     func placeObjectAtLocation(objectAndLocation: String) {
@@ -152,32 +163,57 @@ class ClientViewController: UIViewController, ARSCNViewDelegate {
     }
     
     @objc func displayLinkDidFire() {
+        // Our capturer polls the ARSCNView's snapshot for processed AR video content, and then copies the result into a CVPixelBuffer.
+        // This process is not ideal, but it is the most straightforward way to capture the output of SceneKit.
         let myImage = self.sceneView.snapshot
-        print("\(NSStringFromCGSize(myImage().size))")
-        let imageRef = myImage().cgImage!
-        let pixelBuffer = self.pixelBufferFromCGImage1(fromCGImage1: imageRef)
-        self.frame = TVIVideoFrame(timestamp: Int64((displayLink?.timestamp)! * 1000000), buffer: pixelBuffer, orientation: TVIVideoOrientation.up)
-        self.consumer?.consumeCapturedFrame(self.frame!)
-    }
-    
-    func pixelBufferFromCGImage1(fromCGImage1 image: CGImage) -> CVPixelBuffer {
-        let frameSize = CGSize(width: image.width, height: image.height)
-        let options: [AnyHashable: Any]? = [kCVPixelBufferCGImageCompatibilityKey: false, kCVPixelBufferCGBitmapContextCompatibilityKey: false]
-        var pixelBuffer: CVPixelBuffer? = nil
-        let status: CVReturn? = CVPixelBufferCreate(kCFAllocatorDefault, Int(frameSize.width), Int(frameSize.height), kCVPixelFormatType_32ARGB, (options! as CFDictionary), &pixelBuffer)
-        if status != kCVReturnSuccess {
-            return NSNull.self as! CVPixelBuffer
+        
+        guard let imageRef = myImage().cgImage else {
+            return
         }
-        CVPixelBufferLockBaseAddress(pixelBuffer!, CVPixelBufferLockFlags(rawValue: 0))
-        let data = CVPixelBufferGetBaseAddress(pixelBuffer!)
-        let rgbColorSpace: CGColorSpace? = CGColorSpaceCreateDeviceRGB()
-        let context = CGContext(data: data, width: Int(frameSize.width), height: Int(frameSize.height), bitsPerComponent: 8, bytesPerRow: CVPixelBufferGetBytesPerRow(pixelBuffer!), space: rgbColorSpace!, bitmapInfo: (CGImageAlphaInfo.noneSkipLast.rawValue))
-        context?.draw(image, in: CGRect(x:0, y:0, width: image.width, height: image.height))
-        //CGContextRelease(context!)
-        CVPixelBufferUnlockBaseAddress(pixelBuffer!, CVPixelBufferLockFlags(rawValue: 0))
-        return pixelBuffer!
+        
+        // As a TVIVideoCapturer, we must deliver CVPixelBuffers and not CGImages to the consumer.
+        if let pixelBuffer = self.copyPixelbufferFromCGImageProvider(image: imageRef) {
+            self.frame = TVIVideoFrame(timestamp: Int64((displayLink?.timestamp)! * 1000000),
+                                       buffer: pixelBuffer,
+                                       orientation: TVIVideoOrientation.up)
+            self.consumer?.consumeCapturedFrame(self.frame!)
+        }
     }
     
+    /**
+     * Copying the pixel buffer took ~0.026 - 0.048 msec (iPhone 7 Plus).
+     * This pretty fast but still wasteful, it would be nicer to wrap the CGImage and use its CGDataProvider directly.
+     **/
+    func copyPixelbufferFromCGImageProvider(image: CGImage) -> CVPixelBuffer? {
+        let dataProvider: CGDataProvider? = image.dataProvider
+        let data: CFData? = dataProvider?.data
+        let baseAddress = CFDataGetBytePtr(data!)
+        
+        /**
+         * We own the copied CFData which will back the CVPixelBuffer, thus the data's lifetime is bound to the buffer.
+         * We will use a CVPixelBufferReleaseBytesCallback callback in order to release the CFData when the buffer dies.
+         **/
+        let unmanagedData = Unmanaged<CFData>.passRetained(data!)
+        var pixelBuffer: CVPixelBuffer? = nil
+        let status = CVPixelBufferCreateWithBytes(nil,
+                                                  image.width,
+                                                  image.height,
+                                                  TVIPixelFormat.format32BGRA.rawValue,
+                                                  UnsafeMutableRawPointer( mutating: baseAddress!),
+                                                  image.bytesPerRow,
+                                                  { releaseContext, baseAddress in
+                                                    let contextData = Unmanaged<CFData>.fromOpaque(releaseContext!)
+                                                    contextData.release() },
+                                                  unmanagedData.toOpaque(),
+                                                  nil,
+                                                  &pixelBuffer)
+        
+        if (status != kCVReturnSuccess) {
+            return nil;
+        }
+        
+        return pixelBuffer
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -279,6 +315,43 @@ extension ClientViewController : TVIRemoteDataTrackDelegate {
     
     func remoteDataTrack(_ remoteDataTrack: TVIRemoteDataTrack, didReceive message: Data) {
         // Do whatever you want with your received message data
+    }
+}
+
+// MARK: TVIVideoCapturer
+extension ClientViewController : TVIVideoCapturer {
+    var isScreencast: Bool {
+        // We want fluid AR content, maintaining the original frame rate.
+        return false
+    }
+    
+    var supportedFormats: [TVIVideoFormat] {
+        // We only support the single capture format that ARSession provides, and we rasterize the AR scene at 1x.
+        // Don't set any specific capture dimensions.
+        let format = TVIVideoFormat.init()
+        format.frameRate = UInt(sceneView.preferredFramesPerSecond)
+        format.pixelFormat = TVIPixelFormat.format32BGRA
+        return [format]
+    }
+    
+    func startCapture(_ format: TVIVideoFormat, consumer: TVIVideoCaptureConsumer) {
+        self.consumer = consumer
+        
+        // Starting capture is a two step process. We need to start the ARSession and schedule the CADisplayLinkTimer.
+        let configuration = ARWorldTrackingConfiguration()
+        sceneView.session.run(configuration)
+        
+        self.displayLink = CADisplayLink(target: self, selector: #selector(self.displayLinkDidFire))
+        self.displayLink?.preferredFramesPerSecond = self.sceneView.preferredFramesPerSecond
+        
+        displayLink?.add(to: RunLoop.main, forMode: RunLoopMode.commonModes)
+        consumer.captureDidStart(true)
+    }
+    
+    func stopCapture() {
+        self.consumer = nil
+        self.displayLink?.invalidate()
+        self.sceneView.session.pause()
     }
 }
 
