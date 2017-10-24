@@ -31,18 +31,12 @@ class DesignerViewController: UIViewController {
     var remoteView: TVIVideoView?
     var currentObject = "chair"
     
-    // MARK: UI Element Outlets and handles
-    @IBOutlet weak var disconnectButton: UIButton!
-    
     // MARK: UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Design Consultation"
         
-        // Disconnect button will be displayed when the Client is connected to a Room.
-        self.disconnectButton.isHidden = true
-        
-        // Add a gesture recognizer for the tap actions so Bob can place items
+        // Add a gesture recognizer for the tap actions so Designer can place items
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         self.view.addGestureRecognizer(tap)
         
@@ -50,7 +44,7 @@ class DesignerViewController: UIViewController {
         connect()
     }
     
-    // Taps from Bob's view are sent to Alice as a set of coordinates by sending a message from the local data track
+    // Taps from Designer's view are sent to Client as a set of coordinates by sending a message from the local data track
     @objc func handleTap(gestureRecognizer: UIGestureRecognizer){
         let location = gestureRecognizer.location(in: self.view)
         
@@ -168,12 +162,6 @@ class DesignerViewController: UIViewController {
         self.showRoomUI(inRoom: true)
     }
     
-    @IBAction func disconnect(sender: AnyObject) {
-        self.room!.disconnect()
-        print("Attempting to disconnect from room \(room!.name)")
-    }
-    
-    
     func prepareLocalMedia() {
         
         // We will share local audio and video when we connect to the Room.
@@ -199,7 +187,6 @@ class DesignerViewController: UIViewController {
     
     // Update our UI based upon if we are in a Room or not
     func showRoomUI(inRoom: Bool) {
-        self.disconnectButton.isHidden = !inRoom
         self.navigationController?.setNavigationBarHidden(inRoom, animated: true)
         UIApplication.shared.isIdleTimerDisabled = inRoom
     }
