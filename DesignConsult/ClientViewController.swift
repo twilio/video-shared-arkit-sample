@@ -76,6 +76,11 @@ class ClientViewController: UIViewController, ARSCNViewDelegate {
             // place chair. refactor this later.
             if objectName == "chair" {
                 print("placing chair")
+                for childNode in sceneView.scene.rootNode.childNodes {
+                    if childNode.name == objectName {
+                        childNode.removeFromParentNode()
+                    }
+                }
                 let scene = SCNScene(named: "Models.scnassets/chair/chair.scn")
                 let node = scene?.rootNode.childNode(withName: "chair", recursively: false)
                 sceneView.scene.lightingEnvironment.contents = scene?.lightingEnvironment.contents
@@ -87,6 +92,11 @@ class ClientViewController: UIViewController, ARSCNViewDelegate {
             // place lamp. refactor this later.
             if objectName == "lamp" {
                 print("placing lamp")
+                for childNode in sceneView.scene.rootNode.childNodes {
+                    if childNode.name == objectName {
+                        childNode.removeFromParentNode()
+                    }
+                }
                 let scene = SCNScene(named: "Models.scnassets/lamp/lamp.scn")
                 let node = scene?.rootNode.childNode(withName: "lamp", recursively: false)
                 sceneView.scene.lightingEnvironment.contents = scene?.lightingEnvironment.contents
@@ -98,6 +108,11 @@ class ClientViewController: UIViewController, ARSCNViewDelegate {
             // place lamp. refactor this later.
             if objectName == "vase" {
                 print("placing vase")
+                for childNode in sceneView.scene.rootNode.childNodes {
+                    if childNode.name == objectName {
+                        childNode.removeFromParentNode()
+                    }
+                }
                 let scene = SCNScene(named: "Models.scnassets/vase/vase.scn")
                 let node = scene?.rootNode.childNode(withName: "vase", recursively: false)
                 sceneView.scene.lightingEnvironment.contents = scene?.lightingEnvironment.contents
@@ -109,6 +124,11 @@ class ClientViewController: UIViewController, ARSCNViewDelegate {
             // place eames. refactor this later.
             if objectName == "eames" {
                 print("placing eames")
+                for childNode in sceneView.scene.rootNode.childNodes {
+                    if childNode.name == objectName {
+                        childNode.removeFromParentNode()
+                    }
+                }
                 let scene = SCNScene(named: "Models.scnassets/eames.scn")
                 let node = scene?.rootNode.childNode(withName: "eames", recursively: false)
                 sceneView.scene.lightingEnvironment.contents = scene?.lightingEnvironment.contents

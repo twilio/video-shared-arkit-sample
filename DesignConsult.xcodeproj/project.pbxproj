@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C3669F2021C6F1878C3E3D6 /* Pods_DesignConsult.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD9EB3E09CF5DDAF7E846A49 /* Pods_DesignConsult.framework */; };
 		EF3312ED1F9A89EC0030155C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3312EC1F9A89EC0030155C /* AppDelegate.swift */; };
 		EF3312EF1F9A89EC0030155C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3312EE1F9A89EC0030155C /* ViewController.swift */; };
 		EF3312F21F9A89EC0030155C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF3312F01F9A89EC0030155C /* Main.storyboard */; };
@@ -17,16 +18,6 @@
 		EF3313061F9A8BB60030155C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3313031F9A8BB60030155C /* Settings.swift */; };
 		EF3313071F9A8BB60030155C /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3313041F9A8BB60030155C /* SettingsTableViewController.swift */; };
 		EF3313081F9A8BB60030155C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3313051F9A8BB60030155C /* Utils.swift */; };
-		EF3313091F9A8D6E0030155C /* TwilioVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3313021F9A8B680030155C /* TwilioVideo.framework */; };
-		EF33130A1F9A8D6E0030155C /* TwilioVideo.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EF3313021F9A8B680030155C /* TwilioVideo.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		EF33130E1F9A8D8E0030155C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF33130D1F9A8D8E0030155C /* AudioToolbox.framework */; };
-		EF3313101F9A8D940030155C /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF33130F1F9A8D930030155C /* VideoToolbox.framework */; };
-		EF3313121F9A8D9A0030155C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3313111F9A8D9A0030155C /* CoreTelephony.framework */; };
-		EF3313141F9A8DC30030155C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3313131F9A8DC30030155C /* AVFoundation.framework */; };
-		EF3313161F9A8DCA0030155C /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3313151F9A8DCA0030155C /* GLKit.framework */; };
-		EF3313181F9A8DD10030155C /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3313171F9A8DD10030155C /* CoreMedia.framework */; };
-		EF33131A1F9A8DD60030155C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3313191F9A8DD60030155C /* SystemConfiguration.framework */; };
-		EF33131C1F9A8DDD0030155C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EF33131B1F9A8DDD0030155C /* libc++.tbd */; };
 		EF37D94C1F9E83E5005E4EA3 /* Models.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = EF37D94B1F9E83E5005E4EA3 /* Models.scnassets */; };
 /* End PBXBuildFile section */
 
@@ -37,7 +28,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				EF33130A1F9A8D6E0030155C /* TwilioVideo.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -45,6 +35,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		04233D02DDEEFDE49CBF6FCB /* Pods-DesignConsult.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DesignConsult.release.xcconfig"; path = "Pods/Target Support Files/Pods-DesignConsult/Pods-DesignConsult.release.xcconfig"; sourceTree = "<group>"; };
+		81333625D6AC2F5D393F884E /* Pods-DesignConsult.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DesignConsult.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DesignConsult/Pods-DesignConsult.debug.xcconfig"; sourceTree = "<group>"; };
+		DD9EB3E09CF5DDAF7E846A49 /* Pods_DesignConsult.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DesignConsult.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF3312E91F9A89EC0030155C /* DesignConsult.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesignConsult.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF3312EC1F9A89EC0030155C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF3312EE1F9A89EC0030155C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -54,7 +47,6 @@
 		EF3312F81F9A89EC0030155C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EF3312FE1F9A8ABD0030155C /* ClientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientViewController.swift; sourceTree = "<group>"; };
 		EF3313001F9A8AC90030155C /* DesignerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignerViewController.swift; sourceTree = "<group>"; };
-		EF3313021F9A8B680030155C /* TwilioVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwilioVideo.framework; sourceTree = "<group>"; };
 		EF3313031F9A8BB60030155C /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		EF3313041F9A8BB60030155C /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		EF3313051F9A8BB60030155C /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
@@ -74,28 +66,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EF33131C1F9A8DDD0030155C /* libc++.tbd in Frameworks */,
-				EF33131A1F9A8DD60030155C /* SystemConfiguration.framework in Frameworks */,
-				EF3313181F9A8DD10030155C /* CoreMedia.framework in Frameworks */,
-				EF3313161F9A8DCA0030155C /* GLKit.framework in Frameworks */,
-				EF3313141F9A8DC30030155C /* AVFoundation.framework in Frameworks */,
-				EF3313121F9A8D9A0030155C /* CoreTelephony.framework in Frameworks */,
-				EF3313101F9A8D940030155C /* VideoToolbox.framework in Frameworks */,
-				EF33130E1F9A8D8E0030155C /* AudioToolbox.framework in Frameworks */,
-				EF3313091F9A8D6E0030155C /* TwilioVideo.framework in Frameworks */,
+				2C3669F2021C6F1878C3E3D6 /* Pods_DesignConsult.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DD0808CC20A3A28272DF77DC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				81333625D6AC2F5D393F884E /* Pods-DesignConsult.debug.xcconfig */,
+				04233D02DDEEFDE49CBF6FCB /* Pods-DesignConsult.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		EF3312E01F9A89EC0030155C = {
 			isa = PBXGroup;
 			children = (
-				EF3313021F9A8B680030155C /* TwilioVideo.framework */,
 				EF3312EB1F9A89EC0030155C /* DesignConsult */,
 				EF3312EA1F9A89EC0030155C /* Products */,
 				EF33130C1F9A8D8E0030155C /* Frameworks */,
+				DD0808CC20A3A28272DF77DC /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -137,6 +130,7 @@
 				EF3313111F9A8D9A0030155C /* CoreTelephony.framework */,
 				EF33130F1F9A8D930030155C /* VideoToolbox.framework */,
 				EF33130D1F9A8D8E0030155C /* AudioToolbox.framework */,
+				DD9EB3E09CF5DDAF7E846A49 /* Pods_DesignConsult.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -148,10 +142,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EF3312FB1F9A89EC0030155C /* Build configuration list for PBXNativeTarget "DesignConsult" */;
 			buildPhases = (
+				C35B398AFA93750355F6350B /* [CP] Check Pods Manifest.lock */,
 				EF3312E51F9A89EC0030155C /* Sources */,
 				EF3312E61F9A89EC0030155C /* Frameworks */,
 				EF3312E71F9A89EC0030155C /* Resources */,
 				EF33130B1F9A8D6E0030155C /* Embed Frameworks */,
+				AFB316018EEDE04434F16C0D /* [CP] Embed Pods Frameworks */,
+				C80C7D0DEEC7D0724CACAB97 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -209,6 +206,60 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AFB316018EEDE04434F16C0D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-DesignConsult/Pods-DesignConsult-frameworks.sh",
+				"${PODS_ROOT}/TwilioVideo/TwilioVideo.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwilioVideo.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DesignConsult/Pods-DesignConsult-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C35B398AFA93750355F6350B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DesignConsult-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C80C7D0DEEC7D0724CACAB97 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DesignConsult/Pods-DesignConsult-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EF3312E51F9A89EC0030155C /* Sources */ = {
@@ -356,6 +407,7 @@
 		};
 		EF3312FC1F9A89EC0030155C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 81333625D6AC2F5D393F884E /* Pods-DesignConsult.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -375,6 +427,7 @@
 		};
 		EF3312FD1F9A89EC0030155C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04233D02DDEEFDE49CBF6FCB /* Pods-DesignConsult.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
