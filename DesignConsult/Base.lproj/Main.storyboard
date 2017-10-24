@@ -67,10 +67,10 @@
             </objects>
             <point key="canvasLocation" x="-335.19999999999999" y="128.18590704647679"/>
         </scene>
-        <!--Bob View Controller-->
+        <!--Designer View Controller-->
         <scene sceneID="v9a-jL-ZGS">
             <objects>
-                <viewController id="74T-kp-JbP" customClass="BobViewController" customModule="DesignConsult" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="74T-kp-JbP" customClass="DesignerViewController" customModule="DesignConsult" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vbj-gX-Kyy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -145,10 +145,10 @@
             </objects>
             <point key="canvasLocation" x="469.60000000000002" y="533.88305847076469"/>
         </scene>
-        <!--Alice View Controller-->
+        <!--Client View Controller-->
         <scene sceneID="Grp-vG-3mp">
             <objects>
-                <viewController id="PUs-Gu-AfJ" customClass="AliceViewController" customModule="DesignConsult" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="PUs-Gu-AfJ" customClass="ClientViewController" customModule="DesignConsult" customModuleProvider="target" sceneMemberID="viewController">
                     <arscnView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="43s-pJ-Fjt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

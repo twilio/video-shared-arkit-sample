@@ -1,5 +1,5 @@
 //
-//  BobViewController.swift
+//  DesignerViewController.swift
 //  DesignConsult
 //
 //  Created by Jennifer Aprahamian on 10/20/17.
@@ -10,7 +10,7 @@ import UIKit
 
 import TwilioVideo
 
-class BobViewController: UIViewController {
+class DesignerViewController: UIViewController {
     
     // MARK: View Controller Members
     
@@ -218,7 +218,7 @@ class BobViewController: UIViewController {
 }
 
 // MARK: TVIRoomDelegate
-extension BobViewController : TVIRoomDelegate {
+extension DesignerViewController : TVIRoomDelegate {
     func didConnect(to room: TVIRoom) {
         
         // At the moment, this example only supports rendering one Participant at a time.
@@ -264,7 +264,7 @@ extension BobViewController : TVIRoomDelegate {
 }
 
 // MARK: TVIRemoteParticipantDelegate
-extension BobViewController : TVIRemoteParticipantDelegate {
+extension DesignerViewController : TVIRemoteParticipantDelegate {
     
     func remoteParticipant(_ participant: TVIRemoteParticipant,
                            publishedVideoTrack publication: TVIRemoteVideoTrackPublication) {
@@ -379,7 +379,7 @@ extension BobViewController : TVIRemoteParticipantDelegate {
 }
 
 // MARK: TVIVideoViewDelegate
-extension BobViewController : TVIVideoViewDelegate {
+extension DesignerViewController : TVIVideoViewDelegate {
     func videoView(_ view: TVIVideoView, videoDimensionsDidChange dimensions: CMVideoDimensions) {
         self.view.setNeedsLayout()
     }

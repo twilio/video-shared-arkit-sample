@@ -1,5 +1,5 @@
 //
-//  AliceViewController.swift
+//  ClientViewController.swift
 //  DesignConsult
 //
 //  Created by Jennifer Aprahamian on 10/20/17.
@@ -11,7 +11,7 @@ import SceneKit
 import ARKit
 import TwilioVideo
 
-class AliceViewController: UIViewController, ARSCNViewDelegate {
+class ClientViewController: UIViewController, ARSCNViewDelegate {
     
     @IBOutlet var sceneView: ARSCNView!
     var accessToken = "TWILIO_ACCESS_TOKEN"
@@ -33,7 +33,7 @@ class AliceViewController: UIViewController, ARSCNViewDelegate {
         sceneView.delegate = self
         
         // Show statistics such as fps and timing information
-        sceneView.showsStatistics = true
+        sceneView.showsStatistics = false
         sceneView.preferredFramesPerSecond = 30
         sceneView.contentScaleFactor = 1
         
@@ -56,7 +56,6 @@ class AliceViewController: UIViewController, ARSCNViewDelegate {
         })
         // Connect to the room
         self.room = TwilioVideo.connect(with: connectOptions, delegate: self)
-//                registerGestureRecognizer()
     }
     
     func placeObjectAtLocation(objectAndLocation: String) {
@@ -73,21 +72,13 @@ class AliceViewController: UIViewController, ARSCNViewDelegate {
             guard let hitTestResult = hitResult.first else  {
                 return
             }
-            //            sphere while testing, replace with furniture objects corresponding to those in designer side app
-            //            let ball = SCNSphere(radius: 0.1)
-            //            ball.firstMaterial?.diffuse.contents = UIColor.cyan
-            //            ball.firstMaterial?.specular.contents = UIColor.blue
-            //            let ballNode = SCNNode(geometry: ball)
-            //            let worldPosition = hitTestResult.worldTransform
-            //            ballNode.position = SCNVector3(worldPosition.columns.3.x, worldPosition.columns.3.y, worldPosition.columns.3.z)
-            //
-            //            sceneView.scene.rootNode.addChildNode(ballNode)
-            
+    
             // place chair. refactor this later.
             if objectName == "chair" {
                 print("placing chair")
                 let scene = SCNScene(named: "Models.scnassets/chair/chair.scn")
                 let node = scene?.rootNode.childNode(withName: "chair", recursively: false)
+                sceneView.scene.lightingEnvironment.contents = scene?.lightingEnvironment.contents
                 let worldPosition = hitTestResult.worldTransform
                 node?.position = SCNVector3(worldPosition.columns.3.x, worldPosition.columns.3.y, worldPosition.columns.3.z)
                 sceneView.scene.rootNode.addChildNode(node!)
@@ -98,6 +89,7 @@ class AliceViewController: UIViewController, ARSCNViewDelegate {
                 print("placing lamp")
                 let scene = SCNScene(named: "Models.scnassets/lamp/lamp.scn")
                 let node = scene?.rootNode.childNode(withName: "lamp", recursively: false)
+                sceneView.scene.lightingEnvironment.contents = scene?.lightingEnvironment.contents
                 let worldPosition = hitTestResult.worldTransform
                 node?.position = SCNVector3(worldPosition.columns.3.x, worldPosition.columns.3.y, worldPosition.columns.3.z)
                 sceneView.scene.rootNode.addChildNode(node!)
@@ -108,6 +100,18 @@ class AliceViewController: UIViewController, ARSCNViewDelegate {
                 print("placing vase")
                 let scene = SCNScene(named: "Models.scnassets/vase/vase.scn")
                 let node = scene?.rootNode.childNode(withName: "vase", recursively: false)
+                sceneView.scene.lightingEnvironment.contents = scene?.lightingEnvironment.contents
+                let worldPosition = hitTestResult.worldTransform
+                node?.position = SCNVector3(worldPosition.columns.3.x, worldPosition.columns.3.y, worldPosition.columns.3.z)
+                sceneView.scene.rootNode.addChildNode(node!)
+            }
+            
+            // place eames. refactor this later.
+            if objectName == "eames" {
+                print("placing eames")
+                let scene = SCNScene(named: "Models.scnassets/eames.scn")
+                let node = scene?.rootNode.childNode(withName: "eames", recursively: false)
+                sceneView.scene.lightingEnvironment.contents = scene?.lightingEnvironment.contents
                 let worldPosition = hitTestResult.worldTransform
                 node?.position = SCNVector3(worldPosition.columns.3.x, worldPosition.columns.3.y, worldPosition.columns.3.z)
                 sceneView.scene.rootNode.addChildNode(node!)
@@ -116,16 +120,6 @@ class AliceViewController: UIViewController, ARSCNViewDelegate {
         }
         
     }
-    
-//            OLD -- for tap events, replacing with data track messages
-//            func registerGestureRecognizer() {
-//                let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-//                sceneView.addGestureRecognizer(tap)
-//            }
-//            @objc func handleTap(gestureRecognizer: UIGestureRecognizer){
-//                let touchlocation = gestureRecognizer.location(in: sceneView)
-//                placeObjectAtLocation(objectAndLocation: "vase \(touchlocation)")
-//            }
     
     func startCapture(format: TVIVideoFormat, consumer: TVIVideoCaptureConsumer) {
         self.consumer = consumer
@@ -215,7 +209,7 @@ class AliceViewController: UIViewController, ARSCNViewDelegate {
 }
 
 // MARK: TVIRoomDelegate
-extension AliceViewController : TVIRoomDelegate {
+extension ClientViewController : TVIRoomDelegate {
     func didConnect(to room: TVIRoom) {
         if (room.remoteParticipants.count > 0) {
             let remoteParticipant = room.remoteParticipants[0]
@@ -229,7 +223,7 @@ extension AliceViewController : TVIRoomDelegate {
 }
 
 // MARK: TVIRemoteParticipantDelegate
-extension AliceViewController : TVIRemoteParticipantDelegate {
+extension ClientViewController : TVIRemoteParticipantDelegate {
     // Participant has published data track
     func remoteParticipant(_ participant: TVIRemoteParticipant, publishedDataTrack publication: TVIRemoteDataTrackPublication) {
         print("remote participant published data track")
@@ -257,7 +251,7 @@ extension AliceViewController : TVIRemoteParticipantDelegate {
 }
 
 // MARK : TVIRemoteDataTrackDelegate
-extension AliceViewController : TVIRemoteDataTrackDelegate {
+extension ClientViewController : TVIRemoteDataTrackDelegate {
     func remoteDataTrack(_ remoteDataTrack: TVIRemoteDataTrack, didReceive message: String) {
         // Do whatever you want with your received message string
         placeObjectAtLocation(objectAndLocation: message)
