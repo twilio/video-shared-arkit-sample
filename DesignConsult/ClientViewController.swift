@@ -23,6 +23,7 @@ class ClientViewController: UIViewController, ARSCNViewDelegate {
     var videoTrack: TVILocalVideoTrack?
     var audioTrack: TVILocalAudioTrack?
     var dataTrack: TVIRemoteDataTrack?
+    var switchView = UISwitch()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,9 +39,6 @@ class ClientViewController: UIViewController, ARSCNViewDelegate {
         // Create a new scene and set it to the view
         let scene = SCNScene()
         self.sceneView.scene = scene
-
-        //sceneView.debugOptions =
-          //  [ARSCNDebugOptions.showFeaturePoints] //show feature points to improve likelihood of HitResult
         
         self.videoTrack = TVILocalVideoTrack.init(capturer: self)
         self.audioTrack = TVILocalAudioTrack.init()
@@ -53,6 +51,22 @@ class ClientViewController: UIViewController, ARSCNViewDelegate {
         })
         // Connect to the room
         self.room = TwilioVideo.connect(with: connectOptions, delegate: self)
+        
+        switchView.addTarget(self, action: #selector(ClientViewController.showFeaturePointsValueChanged(sender:)), for: UIControlEvents.valueChanged)
+
+        self.sceneView.addSubview(switchView)
+    }
+    
+    override func viewWillLayoutSubviews() {
+        switchView.frame = CGRect(x: self.view.frame.width - 60, y:20, width: 40, height:20)
+    }
+    
+    @objc func showFeaturePointsValueChanged(sender: UISwitch!) {
+        if sender.isOn {
+            sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
+        } else {
+            sceneView.debugOptions = []
+        }
     }
     
     func placeObjectAtLocation(objectAndLocation: String) {
