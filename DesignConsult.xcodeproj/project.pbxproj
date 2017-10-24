@@ -12,8 +12,8 @@
 		EF3312F21F9A89EC0030155C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF3312F01F9A89EC0030155C /* Main.storyboard */; };
 		EF3312F41F9A89EC0030155C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF3312F31F9A89EC0030155C /* Assets.xcassets */; };
 		EF3312F71F9A89EC0030155C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF3312F51F9A89EC0030155C /* LaunchScreen.storyboard */; };
-		EF3312FF1F9A8ABD0030155C /* AliceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3312FE1F9A8ABD0030155C /* AliceViewController.swift */; };
-		EF3313011F9A8AC90030155C /* BobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3313001F9A8AC90030155C /* BobViewController.swift */; };
+		EF3312FF1F9A8ABD0030155C /* ClientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3312FE1F9A8ABD0030155C /* ClientViewController.swift */; };
+		EF3313011F9A8AC90030155C /* DesignerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3313001F9A8AC90030155C /* DesignerViewController.swift */; };
 		EF3313061F9A8BB60030155C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3313031F9A8BB60030155C /* Settings.swift */; };
 		EF3313071F9A8BB60030155C /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3313041F9A8BB60030155C /* SettingsTableViewController.swift */; };
 		EF3313081F9A8BB60030155C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3313051F9A8BB60030155C /* Utils.swift */; };
@@ -52,8 +52,8 @@
 		EF3312F31F9A89EC0030155C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EF3312F61F9A89EC0030155C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EF3312F81F9A89EC0030155C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EF3312FE1F9A8ABD0030155C /* AliceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliceViewController.swift; sourceTree = "<group>"; };
-		EF3313001F9A8AC90030155C /* BobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BobViewController.swift; sourceTree = "<group>"; };
+		EF3312FE1F9A8ABD0030155C /* ClientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientViewController.swift; sourceTree = "<group>"; };
+		EF3313001F9A8AC90030155C /* DesignerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignerViewController.swift; sourceTree = "<group>"; };
 		EF3313021F9A8B680030155C /* TwilioVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwilioVideo.framework; sourceTree = "<group>"; };
 		EF3313031F9A8BB60030155C /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		EF3313041F9A8BB60030155C /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
@@ -113,8 +113,8 @@
 				EF37D94B1F9E83E5005E4EA3 /* Models.scnassets */,
 				EF3312EC1F9A89EC0030155C /* AppDelegate.swift */,
 				EF3312EE1F9A89EC0030155C /* ViewController.swift */,
-				EF3312FE1F9A8ABD0030155C /* AliceViewController.swift */,
-				EF3313001F9A8AC90030155C /* BobViewController.swift */,
+				EF3312FE1F9A8ABD0030155C /* ClientViewController.swift */,
+				EF3313001F9A8AC90030155C /* DesignerViewController.swift */,
 				EF3313031F9A8BB60030155C /* Settings.swift */,
 				EF3313041F9A8BB60030155C /* SettingsTableViewController.swift */,
 				EF3313051F9A8BB60030155C /* Utils.swift */,
@@ -215,12 +215,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EF3313011F9A8AC90030155C /* BobViewController.swift in Sources */,
+				EF3313011F9A8AC90030155C /* DesignerViewController.swift in Sources */,
 				EF3312EF1F9A89EC0030155C /* ViewController.swift in Sources */,
 				EF3313071F9A8BB60030155C /* SettingsTableViewController.swift in Sources */,
 				EF3313081F9A8BB60030155C /* Utils.swift in Sources */,
 				EF3312ED1F9A89EC0030155C /* AppDelegate.swift in Sources */,
-				EF3312FF1F9A8ABD0030155C /* AliceViewController.swift in Sources */,
+				EF3312FF1F9A8ABD0030155C /* ClientViewController.swift in Sources */,
 				EF3313061F9A8BB60030155C /* Settings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
