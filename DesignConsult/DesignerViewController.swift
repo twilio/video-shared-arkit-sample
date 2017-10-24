@@ -17,7 +17,7 @@ class DesignerViewController: UIViewController {
     // Configure access token manually for testing, if desired! Create one manually in the console
     // at https://www.twilio.com/user/account/video/dev-tools/testing-tools
     var accessToken = "TWILIO_ACCESS_TOKEN"
-    
+
     // Configure remote URL to fetch token from
     var tokenUrl = "http://localhost:8000/token.php"
     
@@ -137,8 +137,6 @@ class DesignerViewController: UIViewController {
         let connectOptions = TVIConnectOptions.init(token: accessToken) { (builder) in
             
             // Use the local media that we prepared earlier.
-            builder.audioTracks = self.localAudioTrack != nil ? [self.localAudioTrack!] : [TVILocalAudioTrack]()
-            builder.videoTracks = self.localVideoTrack != nil ? [self.localVideoTrack!] : [TVILocalVideoTrack]()
             builder.dataTracks = self.localDataTrack != nil ? [self.localDataTrack!] : [TVILocalDataTrack]()
             
             // Use the preferred audio codec
