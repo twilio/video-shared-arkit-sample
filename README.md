@@ -6,7 +6,6 @@ The project demonstrates how to use Twilio's Programmable Video SDK and new Data
 [ ![Download](https://img.shields.io/badge/Download-iOS%20SDK-blue.svg) ](https://www.twilio.com/docs/api/video/download-video-sdks#ios-sdk)
 [![Docs](https://img.shields.io/badge/iOS%20Docs-OK-blue.svg)](https://media.twiliocdn.com/sdk/ios/video/latest/docs/index.html)
 
-# Twilio Video Quickstart for Swift
 
 > NOTE: This sample application uses the Twilio Video 2.0.0-preview APIs. Previous versions of the Twilio Video API do not feature data tracks, and this sample code will not run.
 
