@@ -24,9 +24,9 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8vm-1b-hUA">
                                 <rect key="frame" x="84" y="192" width="207" height="45"/>
-                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.0126332549" green="0.04980009732" blue="0.2939706856" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="dXT-X3-ZYe"/>
+                                    <constraint firstAttribute="height" constant="45" id="D9Z-3b-pTr"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
                                 <state key="normal" title="I'm a customer">
@@ -38,9 +38,9 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KDx-sI-lPU">
                                 <rect key="frame" x="86" y="430" width="205" height="45"/>
-                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.0126332549" green="0.04980009732" blue="0.2939706856" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="W48-XO-tF0"/>
+                                    <constraint firstAttribute="height" constant="45" id="p3R-SO-Rmg"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
                                 <state key="normal" title="I'm a designer">
@@ -53,12 +53,12 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="8vm-1b-hUA" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="172" id="0N9-yV-4wn"/>
-                            <constraint firstItem="8vm-1b-hUA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="AH1-V7-I4y"/>
-                            <constraint firstItem="8vm-1b-hUA" firstAttribute="trailing" secondItem="KDx-sI-lPU" secondAttribute="trailing" id="E3E-qK-CgX"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="KDx-sI-lPU" secondAttribute="bottom" constant="192" id="apd-SB-mu8"/>
-                            <constraint firstItem="8vm-1b-hUA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="84" id="fgS-q2-6lu"/>
-                            <constraint firstItem="KDx-sI-lPU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="86" id="kvb-fr-oxB"/>
+                            <constraint firstItem="8vm-1b-hUA" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="172" id="67y-Ea-ny3"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="KDx-sI-lPU" secondAttribute="bottom" constant="192" id="TAf-A0-anI"/>
+                            <constraint firstItem="KDx-sI-lPU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="86" id="Zuw-UT-jrc"/>
+                            <constraint firstItem="8vm-1b-hUA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="84" id="ZzH-FZ-fRs"/>
+                            <constraint firstItem="8vm-1b-hUA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="eqE-TM-lW3"/>
+                            <constraint firstItem="8vm-1b-hUA" firstAttribute="trailing" secondItem="KDx-sI-lPU" secondAttribute="trailing" id="f4m-8t-hop"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -76,7 +76,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fmj-yD-pMt">
-                                <rect key="frame" x="16" y="607" width="343" height="50"/>
+                                <rect key="frame" x="22.5" y="607" width="330" height="50"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hPO-Tb-5Uf">
                                         <rect key="frame" x="0.0" y="0.0" width="45" height="50"/>
@@ -139,7 +139,7 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tdf-h1-32q">
-                                        <rect key="frame" x="285" y="0.0" width="58" height="50"/>
+                                        <rect key="frame" x="285" y="0.0" width="45" height="50"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="45" id="ZIs-Dc-jct"/>
@@ -148,8 +148,7 @@
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="343" id="VMG-4R-84s"/>
-                                    <constraint firstAttribute="width" constant="343" id="akD-J1-o0u"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="330" id="VMG-4R-84s"/>
                                 </constraints>
                             </stackView>
                         </subviews>

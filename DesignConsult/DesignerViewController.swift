@@ -51,7 +51,6 @@ class DesignerViewController: UIViewController {
         if (self.localDataTrack != nil) {
             let message = "\(currentObject) \(location)"
             localDataTrack?.send(message)
-            print(message)
         }
     }
     

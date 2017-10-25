@@ -24,6 +24,7 @@ class ClientViewController: UIViewController, ARSCNViewDelegate {
     var audioTrack: TVILocalAudioTrack?
     var dataTrack: TVIRemoteDataTrack?
     var switchView = UISwitch()
+    var buttonView = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +32,7 @@ class ClientViewController: UIViewController, ARSCNViewDelegate {
         // Set the view's delegate
         sceneView.delegate = self
         
-        // Show statistics such as fps and timing information
+        // Set showsStatistics to true to show stats on fps and timing information
         sceneView.showsStatistics = false
         sceneView.preferredFramesPerSecond = 30
         sceneView.contentScaleFactor = 1.0
@@ -49,18 +50,26 @@ class ClientViewController: UIViewController, ARSCNViewDelegate {
             builder.dataTracks = [localDataTrack!]
             builder.preferredVideoCodecs = [TVIVideoCodec.H264.rawValue]
         })
+        
         // Connect to the room
         self.room = TwilioVideo.connect(with: connectOptions, delegate: self)
         
+        // Add switch to toggle feature points
         switchView.addTarget(self, action: #selector(ClientViewController.showFeaturePointsValueChanged(sender:)), for: UIControlEvents.valueChanged)
-
         self.sceneView.addSubview(switchView)
+        
+        // Add button for screenshot
+        buttonView.setTitle("📸", for: .normal)
+        buttonView.frame = CGRect(x: 20, y: 20, width: 45, height: 45)
+        buttonView.addTarget(self, action: #selector(ClientViewController.takeScreenshot(sender:)), for: UIControlEvents.touchUpInside)
+        self.sceneView.addSubview(buttonView)
     }
     
     override func viewWillLayoutSubviews() {
         switchView.frame = CGRect(x: self.view.frame.width - 60, y:20, width: 40, height:20)
     }
     
+    // Toggle feature points
     @objc func showFeaturePointsValueChanged(sender: UISwitch!) {
         if sender.isOn {
             sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
@@ -69,85 +78,61 @@ class ClientViewController: UIViewController, ARSCNViewDelegate {
         }
     }
     
+    // Take a screenshot
+    @objc func takeScreenshot(sender: UIButton!) {
+        let image = self.sceneView.snapshot()
+        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+    }
+    
+    // Place objects based on string messages received from Designer's data track
+    // The string will look something like "chair (236.3, 155.8)"
     func placeObjectAtLocation(objectAndLocation: String) {
-        // takes pair of object name and location coordinates from Bob's data track
+        // Grab the object name from the first part of the message string and set the range so coordinates can be trimmed
         let objectName = objectAndLocation.components(separatedBy: " ").first
         let range = objectAndLocation.range(of: objectName!)
         
-        // trim coordinates into something that can be converted to a CGPoint
+        // Trim coordinates into something that can be converted to a CGPoint
         let coordinates = objectAndLocation.substring(from: (range?.upperBound)!)
         let location = coordinates.dropLast().dropFirst().dropFirst()
         let locationPoint: CGPoint = CGPointFromString("{\(location)}")
+        
+        // Search for real-world objects or surfaces for placing objects
         let hitResult = self.sceneView.hitTest(locationPoint, types: [.existingPlaneUsingExtent, .estimatedHorizontalPlane])
         if hitResult.count > 0 {
             guard let hitTestResult = hitResult.first else  {
                 return
             }
     
-            // place chair. refactor this later.
-            if objectName == "chair" {
-                print("placing chair")
-                for childNode in sceneView.scene.rootNode.childNodes {
-                    if childNode.name == objectName {
-                        childNode.removeFromParentNode()
-                    }
+            
+            // Remove existing objects of same name from the scene so you don't get 1000 chairs
+            for childNode in sceneView.scene.rootNode.childNodes {
+                if childNode.name == objectName {
+                    childNode.removeFromParentNode()
                 }
-                let scene = SCNScene(named: "Models.scnassets/chair/chair.scn")
-                let node = scene?.rootNode.childNode(withName: "chair", recursively: false)
-                sceneView.scene.lightingEnvironment.contents = scene?.lightingEnvironment.contents
-                let worldPosition = hitTestResult.worldTransform
-                node?.position = SCNVector3(worldPosition.columns.3.x, worldPosition.columns.3.y, worldPosition.columns.3.z)
-                sceneView.scene.rootNode.addChildNode(node!)
             }
             
-            // place lamp. refactor this later.
-            if objectName == "lamp" {
-                print("placing lamp")
-                for childNode in sceneView.scene.rootNode.childNodes {
-                    if childNode.name == objectName {
-                        childNode.removeFromParentNode()
-                    }
-                }
-                let scene = SCNScene(named: "Models.scnassets/lamp/lamp.scn")
-                let node = scene?.rootNode.childNode(withName: "lamp", recursively: false)
-                sceneView.scene.lightingEnvironment.contents = scene?.lightingEnvironment.contents
-                let worldPosition = hitTestResult.worldTransform
-                node?.position = SCNVector3(worldPosition.columns.3.x, worldPosition.columns.3.y, worldPosition.columns.3.z)
-                sceneView.scene.rootNode.addChildNode(node!)
-            }
+            var scene = SCNScene()
+            var node = SCNNode()
             
-            // place lamp. refactor this later.
-            if objectName == "vase" {
-                print("placing vase")
-                for childNode in sceneView.scene.rootNode.childNodes {
-                    if childNode.name == objectName {
-                        childNode.removeFromParentNode()
-                    }
-                }
-                let scene = SCNScene(named: "Models.scnassets/vase/vase.scn")
-                let node = scene?.rootNode.childNode(withName: "vase", recursively: false)
-                sceneView.scene.lightingEnvironment.contents = scene?.lightingEnvironment.contents
-                let worldPosition = hitTestResult.worldTransform
-                node?.position = SCNVector3(worldPosition.columns.3.x, worldPosition.columns.3.y, worldPosition.columns.3.z)
-                sceneView.scene.rootNode.addChildNode(node!)
+            // Take the object name from the message and map it to the appropriate model
+            switch objectName {
+            case "lamp"?:
+                scene = SCNScene(named: "Models.scnassets/lamp/lamp.scn")!
+                node = scene.rootNode.childNode(withName: "lamp", recursively: false)!
+            case "vase"?:
+                scene = SCNScene(named: "Models.scnassets/vase/vase.scn")!
+                node = scene.rootNode.childNode(withName: "vase", recursively: false)!
+            default:
+                scene = SCNScene(named: "Models.scnassets/chair/chair.scn")!
+                node = scene.rootNode.childNode(withName: "chair", recursively: false)!
             }
+            // Light the scene
+            sceneView.scene.lightingEnvironment.contents = scene.lightingEnvironment.contents
             
-            // place eames. refactor this later.
-            if objectName == "eames" {
-                print("placing eames")
-                for childNode in sceneView.scene.rootNode.childNodes {
-                    if childNode.name == objectName {
-                        childNode.removeFromParentNode()
-                    }
-                }
-                let scene = SCNScene(named: "Models.scnassets/eames.scn")
-                let node = scene?.rootNode.childNode(withName: "eames", recursively: false)
-                sceneView.scene.lightingEnvironment.contents = scene?.lightingEnvironment.contents
-                let worldPosition = hitTestResult.worldTransform
-                node?.position = SCNVector3(worldPosition.columns.3.x, worldPosition.columns.3.y, worldPosition.columns.3.z)
-                sceneView.scene.rootNode.addChildNode(node!)
-            }
-            
+            // Place the object in the scene based on the coordinates / hit test result
+            let worldPosition = hitTestResult.worldTransform
+            node.position = SCNVector3(worldPosition.columns.3.x, worldPosition.columns.3.y, worldPosition.columns.3.z)
+            sceneView.scene.rootNode.addChildNode(node)
         }
         
     }
