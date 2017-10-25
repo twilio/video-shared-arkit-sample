@@ -6,6 +6,6 @@ target 'DesignConsult' do
   use_frameworks!
 
   # Pods for DesignConsult
-  pod 'TwilioVideo', '~> 2.0.0-preview5'
+  pod 'TwilioVideo', '2.0.0-preview5'
 
 end
