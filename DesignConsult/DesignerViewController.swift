@@ -29,8 +29,13 @@ class DesignerViewController: UIViewController {
     var localDataTrack: TVILocalDataTrack?
     var remoteParticipant: TVIRemoteParticipant?
     var remoteView: TVIVideoView?
-    var currentObject = "chair"
+    var currentObject = ""
+    var previewView: TVIVideoView?
     
+    @IBOutlet weak var chairButton: UIButton!
+    
+    @IBOutlet weak var lampButton: UIButton!
+    @IBOutlet weak var vaseButton: UIButton!
     // MARK: UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,8 +45,19 @@ class DesignerViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         self.view.addGestureRecognizer(tap)
         
+        setChair(chairButton)
+        
         // Connect to the room
         connect()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        self.previewView?.frame  = CGRect(x: self.view.frame.width - 10 - 90,
+                                          y: self.view.frame.height + 10 - 160,
+                                          width: 90,
+                                          height: 160)
+        
     }
     
     // Taps from Designer's view are sent to Client as a set of coordinates by sending a message from the local data track
@@ -56,17 +72,26 @@ class DesignerViewController: UIViewController {
     
     @IBAction func setChair(_ sender: Any) {
         currentObject = "chair"
+        chairButton.setImage(#imageLiteral(resourceName: "chair-red"), for: .normal)
+        vaseButton.setImage(#imageLiteral(resourceName: "vase"), for: .normal)
+        lampButton.setImage(#imageLiteral(resourceName: "lamp"), for: .normal)
     }
     @IBAction func setLamp(_ sender: Any) {
         currentObject = "lamp"
+        chairButton.setImage(#imageLiteral(resourceName: "chair"), for: .normal)
+        vaseButton.setImage(#imageLiteral(resourceName: "vase"), for: .normal)
+        lampButton.setImage(#imageLiteral(resourceName: "lamp-red"), for: .normal)
     }
     @IBAction func setVase(_ sender: Any) {
         currentObject = "vase"
+        chairButton.setImage(#imageLiteral(resourceName: "chair"), for: .normal)
+        vaseButton.setImage(#imageLiteral(resourceName: "vase-red"), for: .normal)
+        lampButton.setImage(#imageLiteral(resourceName: "lamp"), for: .normal)
     }
     
-    
-    
     func setupRemoteVideoView() {
+        
+        
         // Creating `TVIVideoView` programmatically
         self.remoteView = TVIVideoView.init(frame: CGRect.zero, delegate:self)
         
@@ -131,16 +156,14 @@ class DesignerViewController: UIViewController {
             
             // Use the local media that we prepared earlier.
             builder.dataTracks = self.localDataTrack != nil ? [self.localDataTrack!] : [TVILocalDataTrack]()
+            builder.videoTracks = self.localVideoTrack != nil ? [self.localVideoTrack!] : [TVILocalVideoTrack]()
             
             // Use the preferred audio codec
             if let preferredAudioCodec = Settings.shared.audioCodec {
                 builder.preferredAudioCodecs = [preferredAudioCodec.rawValue]
             }
             
-            // Use the preferred video codec
-            if let preferredVideoCodec = Settings.shared.videoCodec {
-                builder.preferredVideoCodecs = [preferredVideoCodec.rawValue]
-            }
+            builder.preferredVideoCodecs = [TVIVideoCodec.H264.rawValue]
             
             // Use the preferred encoding parameters
             if let encodingParameters = Settings.shared.getEncodingParameters() {
@@ -174,7 +197,20 @@ class DesignerViewController: UIViewController {
         
         // Create a data track.
         if (localDataTrack == nil) {
-            localDataTrack = TVILocalDataTrack.init()
+                localDataTrack = TVILocalDataTrack.init()
+        }
+
+        if (localVideoTrack == nil) {
+            // Preview our local camera track in the local video preview view.
+            camera = TVICameraCapturer(source: .frontCamera, delegate: nil)
+            localVideoTrack = TVILocalVideoTrack.init(capturer: camera!)
+            
+            self.previewView = TVIVideoView.init()
+            self.view.setNeedsLayout()
+
+            localVideoTrack?.addRenderer(self.previewView!)
+            previewView?.shouldMirror = true
+            self.view.addSubview(self.previewView!)
             
             if (localDataTrack == nil) {
                 print("Failed to create data track")
@@ -191,8 +227,9 @@ class DesignerViewController: UIViewController {
     func cleanupRemoteParticipant() {
         if ((self.remoteParticipant) != nil) {
             if ((self.remoteParticipant?.videoTracks.count)! > 0) {
-                let remoteVideoTrack = self.remoteParticipant?.remoteVideoTracks[0].track
-                //                remoteVideoTrack?.removeRenderer(self.remoteView!)
+                if let remoteVideoTrack = self.remoteParticipant?.remoteVideoTracks[0].remoteTrack {
+                    remoteVideoTrack.removeRenderer(self.remoteView!)
+                }
                 self.remoteView?.removeFromSuperview()
                 self.remoteView = nil
             }

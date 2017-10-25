@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13528" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13526"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -76,17 +76,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fmj-yD-pMt">
-                                <rect key="frame" x="22.5" y="607" width="330" height="50"/>
+                                <rect key="frame" x="10" y="607" width="240" height="50"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hPO-Tb-5Uf">
-                                        <rect key="frame" x="0.0" y="0.0" width="45" height="50"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="45" id="y0x-bn-LzM"/>
-                                        </constraints>
-                                    </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZZB-sl-N24">
-                                        <rect key="frame" x="45" y="0.0" width="50" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="Ff8-Xc-2V4"/>
                                             <constraint firstAttribute="height" constant="50" id="pYe-gu-wNS"/>
@@ -99,14 +92,14 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pLt-YL-1uw">
-                                        <rect key="frame" x="95" y="0.0" width="45" height="50"/>
+                                        <rect key="frame" x="50" y="0.0" width="45" height="50"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="45" id="4gu-xu-k07"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W6l-bI-oM5">
-                                        <rect key="frame" x="140" y="0.0" width="50" height="50"/>
+                                        <rect key="frame" x="95" y="0.0" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="8au-gl-9aG"/>
                                             <constraint firstAttribute="height" constant="50" id="tSX-s0-FaG"/>
@@ -119,14 +112,14 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wv1-b8-AFO">
-                                        <rect key="frame" x="190" y="0.0" width="45" height="50"/>
+                                        <rect key="frame" x="145" y="0.0" width="45" height="50"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="45" id="NPd-IP-onJ"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E1S-Ox-HHL">
-                                        <rect key="frame" x="235" y="0.0" width="50" height="50"/>
+                                        <rect key="frame" x="190" y="0.0" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="kCv-Zt-gYo"/>
                                             <constraint firstAttribute="width" constant="50" id="lsi-gb-DdE"/>
@@ -138,27 +131,24 @@
                                             <action selector="setVase:" destination="74T-kp-JbP" eventType="touchUpInside" id="9dS-od-oOf"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tdf-h1-32q">
-                                        <rect key="frame" x="285" y="0.0" width="45" height="50"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="45" id="ZIs-Dc-jct"/>
-                                        </constraints>
-                                        <viewLayoutGuide key="safeArea" id="Bz2-i6-zLz"/>
-                                    </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="330" id="VMG-4R-84s"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="220" id="VMG-4R-84s"/>
                                 </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="fmj-yD-pMt" firstAttribute="centerX" secondItem="vbj-gX-Kyy" secondAttribute="centerX" id="1Yu-rz-OPu"/>
                             <constraint firstItem="BNf-DV-ZWI" firstAttribute="bottom" secondItem="fmj-yD-pMt" secondAttribute="bottom" constant="10" id="A1W-kv-RCB"/>
+                            <constraint firstItem="fmj-yD-pMt" firstAttribute="leading" secondItem="BNf-DV-ZWI" secondAttribute="leading" constant="10" id="fVi-KT-fnP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="BNf-DV-ZWI"/>
                     </view>
+                    <connections>
+                        <outlet property="chairButton" destination="ZZB-sl-N24" id="BmS-H8-ruf"/>
+                        <outlet property="lampButton" destination="W6l-bI-oM5" id="njf-i4-itn"/>
+                        <outlet property="vaseButton" destination="E1S-Ox-HHL" id="Avt-G6-YEt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qc8-Vv-ahH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
