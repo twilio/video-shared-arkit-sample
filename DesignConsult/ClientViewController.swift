@@ -25,6 +25,7 @@ class ClientViewController: UIViewController, ARSCNViewDelegate {
     var dataTrack: TVIRemoteDataTrack?
     var switchView = UISwitch()
     var buttonView = UIButton()
+    var remoteView: TVIVideoView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,7 +67,12 @@ class ClientViewController: UIViewController, ARSCNViewDelegate {
     }
     
     override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
         switchView.frame = CGRect(x: self.view.frame.width - 60, y:20, width: 40, height:20)
+        self.remoteView?.frame = CGRect(x: self.view.frame.width - 20 - 90,
+                                        y: self.view.frame.height - 160,
+                                        width: 90,
+                                        height: 160)
     }
     
     // Toggle feature points
@@ -288,6 +294,17 @@ extension ClientViewController : TVIRemoteParticipantDelegate {
     // Data track has been unsubsubscribed from and messages cannot be observed.
     func unsubscribed(from dataTrack: TVIRemoteDataTrack, publication: TVIRemoteDataTrackPublication, for participant: TVIRemoteParticipant) {
         print("unsubscribed from the data track")
+    }
+    
+    func remoteParticipant(_ participant: TVIRemoteParticipant, enabledVideoTrack publication: TVIRemoteVideoTrackPublication) {
+        
+    }
+    
+    func subscribed(to videoTrack: TVIRemoteVideoTrack, publication: TVIRemoteVideoTrackPublication, for participant: TVIRemoteParticipant) {
+        self.remoteView = TVIVideoView.init()
+        self.view.setNeedsLayout()
+        videoTrack.addRenderer(self.remoteView!)
+        self.view .addSubview(self.remoteView!)
     }
 }
 
