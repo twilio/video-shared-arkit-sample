@@ -65,10 +65,9 @@ class DesignerViewController: UIViewController {
     // Taps from Designer's view are sent to Client as a set of coordinates by sending a message from the local data track
     @objc func handleTap(gestureRecognizer: UIGestureRecognizer){
         let location = gestureRecognizer.location(in: self.view)
-        
-        if (self.localDataTrack != nil) {
+        if let localDataTrack = self.localDataTrack {
             let message = "\(currentObject) \(location)"
-            localDataTrack?.send(message)
+            localDataTrack.send(message)
         }
     }
     
