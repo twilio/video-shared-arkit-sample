@@ -146,6 +146,7 @@
                     </view>
                     <connections>
                         <outlet property="chairButton" destination="ZZB-sl-N24" id="BmS-H8-ruf"/>
+                        <outlet property="iconsContainerView" destination="fmj-yD-pMt" id="w5c-sC-gey"/>
                         <outlet property="lampButton" destination="W6l-bI-oM5" id="njf-i4-itn"/>
                         <outlet property="vaseButton" destination="E1S-Ox-HHL" id="Avt-G6-YEt"/>
                     </connections>

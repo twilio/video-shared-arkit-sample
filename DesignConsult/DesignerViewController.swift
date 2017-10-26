@@ -33,6 +33,7 @@ class DesignerViewController: UIViewController {
     var previewView: TVIVideoView?
     
     @IBOutlet weak var chairButton: UIButton!
+    @IBOutlet weak var iconsContainerView: UIStackView!
     
     @IBOutlet weak var lampButton: UIButton!
     @IBOutlet weak var vaseButton: UIButton!
@@ -46,6 +47,7 @@ class DesignerViewController: UIViewController {
         self.view.addGestureRecognizer(tap)
         
         setChair(chairButton)
+        iconsContainerView.isHidden = true
         
         // Connect to the room
         connect()
@@ -90,7 +92,6 @@ class DesignerViewController: UIViewController {
     }
     
     func setupRemoteVideoView() {
-        
         
         // Creating `TVIVideoView` programmatically
         self.remoteView = TVIVideoView.init(frame: CGRect.zero, delegate:self)
@@ -140,8 +141,9 @@ class DesignerViewController: UIViewController {
         // Configure access token either from server or manually.
         // If the default wasn't changed, try fetching from server.
         if (accessToken == "TWILIO_ACCESS_TOKEN") {
+            let urlStringWithRole = tokenUrl + "?identity=Designer"
             do {
-                accessToken = try TokenUtils.fetchToken(url: tokenUrl)
+                accessToken = try String(contentsOf:URL(string: urlStringWithRole)!)
             } catch {
                 let message = "Failed to fetch access token"
                 print(message)
@@ -197,10 +199,10 @@ class DesignerViewController: UIViewController {
         
         // Create a data track.
         if (localDataTrack == nil) {
-                localDataTrack = TVILocalDataTrack.init()
+            localDataTrack = TVILocalDataTrack.init()
         }
 
-        if (localVideoTrack == nil) {
+        if (PlatformUtils.isSimulator == false && localVideoTrack == nil) {
             // Preview our local camera track in the local video preview view.
             camera = TVICameraCapturer(source: .frontCamera, delegate: nil)
             localVideoTrack = TVILocalVideoTrack.init(capturer: camera!)
@@ -259,6 +261,8 @@ extension DesignerViewController : TVIRoomDelegate {
         self.room = nil
         
         self.showRoomUI(inRoom: false)
+        
+        iconsContainerView.isHidden = true
     }
     
     func room(_ room: TVIRoom, didFailToConnectWithError error: Error) {
@@ -403,6 +407,12 @@ extension DesignerViewController : TVIRemoteParticipantDelegate {
 extension DesignerViewController : TVIVideoViewDelegate {
     func videoView(_ view: TVIVideoView, videoDimensionsDidChange dimensions: CMVideoDimensions) {
         self.view.setNeedsLayout()
+    }
+    
+    func videoViewDidReceiveData(_ view: TVIVideoView) {
+        if (self.remoteView == view) {
+            iconsContainerView.isHidden = false
+        }
     }
 }
 

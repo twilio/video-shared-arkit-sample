@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2C3669F2021C6F1878C3E3D6 /* Pods_DesignConsult.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD9EB3E09CF5DDAF7E846A49 /* Pods_DesignConsult.framework */; };
+		4B4F194A1FA16611000E766C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4F19491FA16611000E766C /* Utils.swift */; };
 		EF3312ED1F9A89EC0030155C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3312EC1F9A89EC0030155C /* AppDelegate.swift */; };
 		EF3312EF1F9A89EC0030155C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3312EE1F9A89EC0030155C /* ViewController.swift */; };
 		EF3312F21F9A89EC0030155C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF3312F01F9A89EC0030155C /* Main.storyboard */; };
@@ -17,7 +18,6 @@
 		EF3313011F9A8AC90030155C /* DesignerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3313001F9A8AC90030155C /* DesignerViewController.swift */; };
 		EF3313061F9A8BB60030155C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3313031F9A8BB60030155C /* Settings.swift */; };
 		EF3313071F9A8BB60030155C /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3313041F9A8BB60030155C /* SettingsTableViewController.swift */; };
-		EF3313081F9A8BB60030155C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3313051F9A8BB60030155C /* Utils.swift */; };
 		EF37D94C1F9E83E5005E4EA3 /* Models.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = EF37D94B1F9E83E5005E4EA3 /* Models.scnassets */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +36,7 @@
 
 /* Begin PBXFileReference section */
 		04233D02DDEEFDE49CBF6FCB /* Pods-DesignConsult.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DesignConsult.release.xcconfig"; path = "Pods/Target Support Files/Pods-DesignConsult/Pods-DesignConsult.release.xcconfig"; sourceTree = "<group>"; };
+		4B4F19491FA16611000E766C /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		81333625D6AC2F5D393F884E /* Pods-DesignConsult.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DesignConsult.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DesignConsult/Pods-DesignConsult.debug.xcconfig"; sourceTree = "<group>"; };
 		DD9EB3E09CF5DDAF7E846A49 /* Pods_DesignConsult.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DesignConsult.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF3312E91F9A89EC0030155C /* DesignConsult.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesignConsult.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,7 +50,6 @@
 		EF3313001F9A8AC90030155C /* DesignerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignerViewController.swift; sourceTree = "<group>"; };
 		EF3313031F9A8BB60030155C /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		EF3313041F9A8BB60030155C /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
-		EF3313051F9A8BB60030155C /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		EF33130D1F9A8D8E0030155C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		EF33130F1F9A8D930030155C /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		EF3313111F9A8D9A0030155C /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -110,7 +110,7 @@
 				EF3313001F9A8AC90030155C /* DesignerViewController.swift */,
 				EF3313031F9A8BB60030155C /* Settings.swift */,
 				EF3313041F9A8BB60030155C /* SettingsTableViewController.swift */,
-				EF3313051F9A8BB60030155C /* Utils.swift */,
+				4B4F19491FA16611000E766C /* Utils.swift */,
 				EF3312F01F9A89EC0030155C /* Main.storyboard */,
 				EF3312F31F9A89EC0030155C /* Assets.xcassets */,
 				EF3312F51F9A89EC0030155C /* LaunchScreen.storyboard */,
@@ -269,7 +269,7 @@
 				EF3313011F9A8AC90030155C /* DesignerViewController.swift in Sources */,
 				EF3312EF1F9A89EC0030155C /* ViewController.swift in Sources */,
 				EF3313071F9A8BB60030155C /* SettingsTableViewController.swift in Sources */,
-				EF3313081F9A8BB60030155C /* Utils.swift in Sources */,
+				4B4F194A1FA16611000E766C /* Utils.swift in Sources */,
 				EF3312ED1F9A89EC0030155C /* AppDelegate.swift in Sources */,
 				EF3312FF1F9A8ABD0030155C /* ClientViewController.swift in Sources */,
 				EF3313061F9A8BB60030155C /* Settings.swift in Sources */,
