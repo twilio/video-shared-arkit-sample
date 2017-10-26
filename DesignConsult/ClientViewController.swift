@@ -15,6 +15,10 @@ class ClientViewController: UIViewController, ARSCNViewDelegate {
     
     @IBOutlet var sceneView: ARSCNView!
     var accessToken = "TWILIO_ACCESS_TOKEN"
+    
+    // Configure remote URL to fetch token from
+    var tokenUrl = "http://localhost:8000/token.php"
+    
     var room: TVIRoom?
     weak var consumer: TVIVideoCaptureConsumer?
     var frame: TVIVideoFrame?

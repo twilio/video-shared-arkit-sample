@@ -93,7 +93,6 @@ class DesignerViewController: UIViewController {
     
     func setupRemoteVideoView() {
         
-        
         // Creating `TVIVideoView` programmatically
         self.remoteView = TVIVideoView.init(frame: CGRect.zero, delegate:self)
         
@@ -200,10 +199,10 @@ class DesignerViewController: UIViewController {
         
         // Create a data track.
         if (localDataTrack == nil) {
-                localDataTrack = TVILocalDataTrack.init()
+            localDataTrack = TVILocalDataTrack.init()
         }
 
-        if (localVideoTrack == nil) {
+        if (PlatformUtils.isSimulator == false && localVideoTrack == nil) {
             // Preview our local camera track in the local video preview view.
             camera = TVICameraCapturer(source: .frontCamera, delegate: nil)
             localVideoTrack = TVILocalVideoTrack.init(capturer: camera!)
