@@ -42,18 +42,7 @@ class ClientViewController: UIViewController, ARSCNViewDelegate {
         let scene = SCNScene()
         self.sceneView.scene = scene
         
-        self.videoTrack = TVILocalVideoTrack.init(capturer: self)
-        self.audioTrack = TVILocalAudioTrack.init()
-        let localDataTrack = TVILocalDataTrack()
-        let connectOptions = TVIConnectOptions(token: accessToken, block: {(_ builder: TVIConnectOptionsBuilder) -> Void in
-            builder.videoTracks = [self.videoTrack!]
-            builder.roomName = "DesignConsult"
-            builder.dataTracks = [localDataTrack!]
-            builder.preferredVideoCodecs = [TVIVideoCodec.H264.rawValue]
-        })
-        
-        // Connect to the room
-        self.room = TwilioVideo.connect(with: connectOptions, delegate: self)
+        connect()
         
         // Add switch to toggle feature points
         switchView.addTarget(self, action: #selector(ClientViewController.showFeaturePointsValueChanged(sender:)), for: UIControlEvents.valueChanged)
@@ -73,6 +62,34 @@ class ClientViewController: UIViewController, ARSCNViewDelegate {
                                         y: self.view.frame.height - 160,
                                         width: 90,
                                         height: 160)
+    }
+    
+    func connect() {
+        // Configure access token either from server or manually.
+        // If the default wasn't changed, try fetching from server.
+        if (accessToken == "TWILIO_ACCESS_TOKEN") {
+            let urlStringWithRole = tokenUrl + "?identity=Customer"
+            do {
+                accessToken = try String(contentsOf:URL(string: urlStringWithRole)!)
+            } catch {
+                let message = "Failed to fetch access token"
+                print(message)
+                return
+            }
+        }
+        
+        self.videoTrack = TVILocalVideoTrack.init(capturer: self)
+        self.audioTrack = TVILocalAudioTrack.init()
+        let localDataTrack = TVILocalDataTrack()
+        let connectOptions = TVIConnectOptions(token: accessToken, block: {(_ builder: TVIConnectOptionsBuilder) -> Void in
+            builder.videoTracks = [self.videoTrack!]
+            builder.roomName = "DesignConsult"
+            builder.dataTracks = [localDataTrack!]
+            builder.preferredVideoCodecs = [TVIVideoCodec.H264.rawValue]
+        })
+        
+        // Connect to the room
+        self.room = TwilioVideo.connect(with: connectOptions, delegate: self)
     }
     
     // Toggle feature points
