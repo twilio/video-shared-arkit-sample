@@ -107,4 +107,4 @@ For general inquiries related to the Video SDK you can file a [support ticket](h
 
 ## License
 
-[MIT License](https://github.com/twilio/video-shared-arkit-sample/blob/master/LICENSE)
+[MIT License](https://github.com/twilio/video-shared-arkit-sample/blob/master/LICENSE/License.txt) except [Apple items](https://github.com/twilio/video-shared-arkit-sample/blob/master/LICENSE/Apple.txt)
